@@ -1,16 +1,4 @@
-# breadth-first traversal (level-order traversal)
-# enqueue root -> initially start with 1 discovered node in the queue
-
-# dequeue
-# visit
-# enqueue children -> discovered nodes
-
-# if queue is empty
-#     return
-# end
-
 Node = Struct.new('Node', :data, :left, :right)
-# node = Node.new('data', 'left', 'right')
 
 def level_order(root)
   return if root.nil?
@@ -28,6 +16,31 @@ def level_order(root)
     queue.push(current.right) if current.right
   end
 end
+
+def preorder(root)
+  return if root.nil?
+
+  puts "#{root.data}"
+  preorder(root.left)
+  preorder(root.right)
+end
+
+def inorder(root)
+  return if root.nil?
+
+  inorder(root.left)
+  puts "#{root.data}"
+  inorder(root.right)
+end
+
+def postorder(root)
+  return if root.nil?
+
+  postorder(root.left)
+  postorder(root.right)
+  puts "#{root.data}"
+end
+
 
 # function to insert Node in a Binary Search Tree
 def insert(root, data)
@@ -67,5 +80,11 @@ root = insert(root, 'C')
 
 pretty_print(root)
 puts "\n"
-puts 'level_order traversal:'
-level_order(root)
+puts 'preorder traversal:'
+preorder(root)
+puts "\n"
+puts 'inorder traversal:'
+inorder(root)
+puts "\n"
+puts 'postorder traversal:'
+postorder(root)
