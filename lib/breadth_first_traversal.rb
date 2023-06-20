@@ -43,13 +43,19 @@ def insert(root, data)
   root
 end
 
+def pretty_print(node = @root, prefix = '', is_left = true)
+  pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
+  puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
+  pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
+end
+
 # Code To Test the logic
 # Creating an example tree
-  #     M
-  #    / \
-  #   B   Q
-  #  / \   \
-  # A   C   Z
+#     M
+#    / \
+#   B   Q
+#  / \   \
+# A   C   Z
 
 root = nil
 root = insert(root, 'M')
@@ -59,4 +65,6 @@ root = insert(root, 'Z')
 root = insert(root, 'A')
 root = insert(root, 'C')
 
+pretty_print(root)
+puts "\n"
 level_order(root)
