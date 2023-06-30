@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # breadth-first traversal (level-order traversal)
 # enqueue root -> initially start with 1 discovered node in the queue
 

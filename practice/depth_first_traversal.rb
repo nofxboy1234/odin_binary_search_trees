@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Node = Struct.new('Node', :data, :left, :right)
 
 def level_order(root)
@@ -20,7 +22,7 @@ end
 def preorder(root)
   return if root.nil?
 
-  puts "#{root.data}"
+  puts root.data.to_s
   preorder(root.left)
   preorder(root.right)
 end
@@ -29,7 +31,7 @@ def inorder(root)
   return if root.nil?
 
   inorder(root.left)
-  puts "#{root.data}"
+  puts root.data.to_s
   inorder(root.right)
 end
 
@@ -38,9 +40,8 @@ def postorder(root)
 
   postorder(root.left)
   postorder(root.right)
-  puts "#{root.data}"
+  puts root.data.to_s
 end
-
 
 # function to insert Node in a Binary Search Tree
 def insert(root, data)
