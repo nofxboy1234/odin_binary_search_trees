@@ -7,7 +7,7 @@
 class Tree
   include Comparable
 
-  def initialize(array)
+  def initialize(array = nil)
     @array = array
   end
 
@@ -15,7 +15,14 @@ class Tree
     @root ||= build_tree
   end
 
-  def build_tree; end
+  def array
+    @array ||= nil
+  end
+
+  def build_tree
+    # array.uniq
+    'tree'
+  end
 end
 
 # rubocop:enable Lint/RedundantCopDisableDirective
