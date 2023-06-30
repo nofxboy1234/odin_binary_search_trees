@@ -3,6 +3,8 @@
 # rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Style/TrivialAccessors
 
+require './lib/node'
+
 # Tree represents a Binary Search Tree
 class Tree
   include Comparable
@@ -22,7 +24,7 @@ class Tree
   def build_tree
     sorted_array = array.uniq.sort
 
-    'tree'
+    root_node = Node.new
   end
 end
 
