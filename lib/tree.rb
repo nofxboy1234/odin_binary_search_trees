@@ -20,8 +20,8 @@ class Tree
   end
 
   def build_tree
-    array.uniq
-    
+    sorted_array = array.uniq.sort
+
     'tree'
   end
 end

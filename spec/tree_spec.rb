@@ -50,15 +50,23 @@ RSpec.describe Tree do
   describe '#build_tree', build_tree: true do
     subject(:node) { described_class.new(array) }
     let(:array) { double('array') }
+    let(:array_uniq) { double('array_uniq') }
+    let(:array_sort) { double('array_sort') }
 
     describe 'takes an array of data and turns it into a balance BST' do
       describe 'removes duplicates' do
         before do
-          allow(array).to receive(:uniq)
+          allow(array).to receive(:uniq).and_return(array_uniq)
+          allow(array_uniq).to receive(:sort).and_return(array_sort)
         end
 
         it 'sends #uniq message to array' do
           expect(array).to receive(:uniq)
+          node.build_tree
+        end
+
+        it 'sends #sort message to array_uniq' do
+          expect(array_uniq).to receive(:sort)
           node.build_tree
         end
       end
