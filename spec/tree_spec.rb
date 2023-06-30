@@ -41,21 +41,27 @@ RSpec.describe Tree do
     end
 
     context 'when @array is set' do
-      # before do
-      #   allow(node).to receive(:build_tree).and_return('tree')
-      # end
-
       it 'returns the value of @array' do
         expect(node.array).to eq([1, 2, 3])
       end
     end
   end
 
-  # describe '#build_tree', build_tree: true do
-  #   describe 'takes an array of data and turns it into a balance BST' do
-  #     describe 'removes duplicates' do
-  #       it 'sends #uniq'
-  #     end
-  #   end
-  # end
+  describe '#build_tree', build_tree: true do
+    subject(:node) { described_class.new(array) }
+    let(:array) { double('array') }
+
+    describe 'takes an array of data and turns it into a balance BST' do
+      describe 'removes duplicates' do
+        before do
+          allow(array).to receive(:uniq)
+        end
+
+        it 'sends #uniq message to array' do
+          expect(array).to receive(:uniq)
+          node.build_tree
+        end
+      end
+    end
+  end
 end

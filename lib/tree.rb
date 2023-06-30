@@ -20,7 +20,8 @@ class Tree
   end
 
   def build_tree
-    # array.uniq
+    array.uniq
+    
     'tree'
   end
 end
