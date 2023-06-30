@@ -1,10 +1,11 @@
 require './lib/node'
 
 RSpec.describe Node do
-  subject(:node) { described_class.new }
-
+  
   describe '#data', data: true do
     context 'when @data is not set' do
+      subject(:node) { described_class.new }
+
       it 'returns nil' do
         expect(node.data).to eq(nil)
       end
@@ -21,6 +22,8 @@ RSpec.describe Node do
 
   describe '#left', left: true do
     context 'when @left is not set' do
+      subject(:node) { described_class.new }
+
       it 'returns nil' do
         expect(node.left).to eq(nil)
       end
@@ -37,6 +40,8 @@ RSpec.describe Node do
 
   describe '#right', right: true do
     context 'when @right is not set' do
+      subject(:node) { described_class.new }
+
       it 'returns nil' do
         expect(node.right).to eq(nil)
       end

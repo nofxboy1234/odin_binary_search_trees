@@ -14,15 +14,15 @@ class Node
   end
 
   def data
-    @data ||= nil
+    @data
   end
 
   def left
-    @left ||= nil
+    @left
   end
 
   def right
-    @right ||= nil
+    @right
   end
 
   def <=>(other)

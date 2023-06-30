@@ -4,7 +4,7 @@ RSpec.describe Tree do
   subject(:node) { described_class.new([1, 2, 3]) }
   
   describe '#root', root: true do
-    let(:root_node) { Node.new }
+    let(:root_node) { double('root_node') }
 
     before do
       allow(node).to receive(:build_tree).and_return(root_node)
@@ -66,7 +66,7 @@ RSpec.describe Tree do
     let(:array) { double('array') }
     let(:array_uniq) { double('array_uniq') }
     let(:array_sort) { double('array_sort') }
-    let(:root_node) { Node.new }
+    let(:root_node) { double('root_node') }
 
     describe 'takes an array of data and turns it into a balance BST' do
       describe 'removes duplicates' do
