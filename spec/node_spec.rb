@@ -3,6 +3,55 @@ require './lib/node'
 RSpec.describe Node do
   subject(:node) { described_class.new }
 
+  describe '#data', data: true do
+    context 'when @data is not set' do
+      it 'returns nil' do
+        expect(node.data).to eq(nil)
+      end
+    end
+
+    context 'when @data is set' do
+      subject(:node) { described_class.new(1) }
+
+      it 'returns the value of @data' do
+        expect(node.data).to eq(1)
+      end
+    end
+  end
+
+  describe '#left', left: true do
+    context 'when @left is not set' do
+      it 'returns nil' do
+        expect(node.left).to eq(nil)
+      end
+    end
+
+    context 'when @left is set' do
+      subject(:node) { described_class.new(2, 1) }
+
+      it 'returns the value of @left' do
+        expect(node.left).to eq(1)
+      end
+    end
+  end
+
+  describe '#right', right: true do
+    context 'when @right is not set' do
+      it 'returns nil' do
+        expect(node.right).to eq(nil)
+      end
+    end
+
+    context 'when @right is set' do
+      subject(:node) { described_class.new(2, 1, 3) }
+
+      it 'returns the value of @right' do
+        expect(node.right).to eq(3)
+      end
+    end
+  end
+
+
   describe '#<=>', comparable: true do
     context 'when data is less than other.data' do
       subject(:node) { described_class.new(1) }

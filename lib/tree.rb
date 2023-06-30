@@ -8,14 +8,14 @@ class Tree
   include Comparable
 
   def initialize(array)
-    @data = data
-    @left = left
-    @right = right
+    @array = array
   end
 
   def root
-    @data
+    @root ||= build_tree
   end
+
+  def build_tree; end
 end
 
 # rubocop:enable Lint/RedundantCopDisableDirective
