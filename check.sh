@@ -22,7 +22,7 @@ rubocop -A lib
 printf "\n\n"
 printf "${PURPLE}reek----code smells------------------------${NC}\n"
 reek lib
-v
+
 printf "\n\n"
 printf "${PURPLE}debride----potentially uncalled / dead methods------------------------${NC}\n"
 debride lib
