@@ -166,7 +166,7 @@ class Animal
   end
 
   def self.add(animal)
-    @animals.push(animal)
+    animals.push(animal)
   end
 
   # factory method
