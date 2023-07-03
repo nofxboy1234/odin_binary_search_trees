@@ -248,6 +248,7 @@ end
 
 # If you send it a message, nil is something
 
+# Null Object Pattern - Active Nothing
 class MissingAnimal
   def name
     'no animal'
@@ -256,6 +257,7 @@ end
 
 # Prefer knowing an object to duplicating behaviour
 ids = ['pig', '', 'sheep']
+# No longer own the behaviour
 animals = ids.map { |id| Animal.find(id) || MissingAnimal.new }
 p animals
 animals.each { |animal| puts animal.name }
