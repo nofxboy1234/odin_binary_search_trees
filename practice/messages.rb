@@ -186,10 +186,18 @@ end
 
 Animal.new('pig')
 Animal.new('cat')
-Animal.new('dog')
+Animal.new('sheep')
 
 p Animal.animals
 
 # binding.pry
 p Animal.find('pig')
 p Animal.find('')
+
+puts "\n"
+
+ids = ['pig', '', 'sheep']
+animals = ids.map { |id| Animal.find(id) }
+p animals
+
+animals.each { |animal| puts animal.name }
