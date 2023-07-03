@@ -9,6 +9,7 @@ require './lib/node'
 class Tree
   include Comparable
 
+  # def initialize(array = NilArray.new)
   def initialize(array)
     @array = array
   end
@@ -18,13 +19,14 @@ class Tree
   end
 
   def array
+    # @array ||= NilArray.new
     @array
   end
 
   def build_tree
     sorted_array = array.uniq.sort
 
-    root_node = Node.new
+    root_node = Node.new(nil, nil, nil)
   end
 end
 
