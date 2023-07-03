@@ -159,6 +159,8 @@ puts "\n"
 
 # What if there were no 'if'?
 class Animal
+  @animals = []
+
   def initialize(name)
     @name = name
   end
