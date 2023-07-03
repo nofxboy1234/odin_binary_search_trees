@@ -191,5 +191,4 @@ Animal.new('dog')
 p Animal.animals
 
 # binding.pry
-animal = Animal.find('pig')
-p animal
+p Animal.find('pig')
