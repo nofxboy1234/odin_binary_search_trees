@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 # syntactic sugar
 p 1.to_s
 # sends the symbol, that invokes the method named in the symbol
@@ -155,3 +157,44 @@ end
   if_true { p 'is true' }.
   if_false { p 'is false' }
 puts "\n"
+
+# What if there were no 'if'?
+class Animal
+  # @animals = %w[a b c]
+  # @@cats = %w[d e f]
+  # def self.animals
+  #   @animals
+  # end
+
+  def name
+    @name
+  end
+
+  def name=(name)
+    # self.class.hello
+    # puts "@animals: #{self.class.animals}"
+    # puts "@@cats: #{@@cats}"
+    @name = name
+  end
+
+  # factory method
+  def self.find(id)
+    # new(id)
+
+    animal = new
+    animal.name = id
+    animal
+  end
+
+  # def self.hello
+  #   p 'hello'
+  # end
+end
+
+animal = Animal.new
+p animal.name
+
+# binding.pry
+animal2 = Animal.find('pig')
+p animal2.name
+p animal2
