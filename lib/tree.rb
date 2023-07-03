@@ -9,7 +9,7 @@ require './lib/node'
 class Tree
   include Comparable
 
-  def initialize(array = nil)
+  def initialize(array)
     @array = array
   end
 
@@ -18,7 +18,7 @@ class Tree
   end
 
   def array
-    @array ||= nil
+    @array
   end
 
   def build_tree
