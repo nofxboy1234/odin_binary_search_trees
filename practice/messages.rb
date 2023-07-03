@@ -278,5 +278,6 @@ end
 # Call your own trustworthy API
 animals = ids.map { |id| GuaranteedAnimal.find(id) }
 p animals
+# Talk to all the objects like they're the same thing
 animals.each { |animal| puts animal.name }
 puts "\n"
