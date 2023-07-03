@@ -258,4 +258,5 @@ end
 ids = ['pig', '', 'sheep']
 animals = ids.map { |id| Animal.find(id) || MissingAnimal.new }
 p animals
+animals.each { |animal| puts animal.name }
 puts "\n"
