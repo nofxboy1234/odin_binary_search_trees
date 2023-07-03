@@ -160,13 +160,13 @@ puts "\n"
 
 # What if there were no 'if'?
 class Animal
-  def name
-    @name
-  end
+  # def name
+  #   @name
+  # end
 
-  def name=(name)
-    @name = name
-  end
+  # def name=(name)
+  #   @name = name
+  # end
 
   # factory method
   def self.find(id)
