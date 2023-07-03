@@ -199,5 +199,63 @@ puts "\n"
 ids = ['pig', '', 'sheep']
 animals = ids.map { |id| Animal.find(id) }
 p animals
+puts "\n"
 
-animals.each { |animal| puts animal.name }
+# sometimes nil is nothing
+# animals.compact!
+
+# animals.each { |animal| puts animal.name }
+
+# animals.each do |animal| 
+#   puts animal.nil? ? 'no animal' : animal.name
+# end
+
+# animals.each do |animal| 
+#   puts animal && animal.name
+# end
+
+# animals.each do |animal| 
+#   puts animal == nil ? '' : animal.name
+# end
+
+# animals.each do |animal| 
+#   puts animal.is_a?(NilClass) ? '' : animal.name
+# end
+
+# animals.each do |animal| 
+#   if animal.is_a?(NilClass)
+#     puts ''
+#   else
+#     puts animal.name
+#   end
+# end
+
+animals.each do |animal| 
+  if animal.is_a?(NilClass)
+    puts 'no animal'
+  else
+    puts animal.name
+  end
+end
+
+# type check
+# if some_object_whose_type_i_know
+#   I'll supply the behaviour
+# else
+#   I'll send a message
+# end
+# puts "\n"
+
+# If you send it a message, nil is something
+
+class MissingAnimal
+  def name
+    'no animal'
+  end
+end
+
+# Prefer knowing an object to duplicating behaviour
+ids = ['pig', '', 'sheep']
+animals = ids.map { |id| Animal.find(id) || MissingAnimal.new }
+p animals
+puts "\n"
