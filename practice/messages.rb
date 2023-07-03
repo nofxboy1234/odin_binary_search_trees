@@ -257,8 +257,26 @@ end
 
 # Prefer knowing an object to duplicating behaviour
 ids = ['pig', '', 'sheep']
-# No longer own the behaviour
+# || MissingAnimal.new: 
+#   Still have conditional
+#   Added dependency but no longer own the behaviour
 animals = ids.map { |id| Animal.find(id) || MissingAnimal.new }
+p animals
+animals.each { |animal| puts animal.name }
+puts "\n"
+
+# Prefer knowing few objects
+# Take that untrustworthy external API and wrap it in your own object
+# You can catch that message and forward it on
+# You can put the condition in one place
+class GuaranteedAnimal
+  def self.find(id)
+    Animal.find(id) || MissingAnimal.new
+  end
+end
+
+# Call your own trustworthy API
+animals = ids.map { |id| GuaranteedAnimal.find(id) }
 p animals
 animals.each { |animal| puts animal.name }
 puts "\n"
