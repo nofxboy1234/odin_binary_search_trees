@@ -192,3 +192,4 @@ p Animal.animals
 
 # binding.pry
 p Animal.find('pig')
+p Animal.find('')
