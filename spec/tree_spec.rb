@@ -5,7 +5,7 @@ RSpec.describe Tree do
   
   describe '#root', root: true do
     let(:root_node) { double('root_node') }
-
+    
     before do
       allow(node).to receive(:build_tree).and_return(root_node)
     end
@@ -14,6 +14,11 @@ RSpec.describe Tree do
       it 'sends #build_tree message to node' do
         expect(node).to receive(:build_tree)
         node.root
+      end
+
+      it 'sets the value of @root' do
+        expect { node.root }.to change { node.instance_variable_get(:@root) }
+          .from(nil).to(root_node)
       end
 
       it 'returns the value of @root' do
@@ -39,7 +44,7 @@ RSpec.describe Tree do
 
   describe '#array', array: true do
     context 'when @array is not set' do
-    subject(:node) { described_class.new }
+      subject(:node) { described_class.new }
 
       it 'returns nil' do
         expect(node.array).to eq(nil)
@@ -60,7 +65,6 @@ RSpec.describe Tree do
     # recursively do following steps:
     # 4. calculate mid of left subarray and make it root of left subtree of A
     # 5. calculate mid of right subarray and make it root of right subtree of A
-
 
     subject(:node) { described_class.new(array) }
     let(:array) { double('array') }
