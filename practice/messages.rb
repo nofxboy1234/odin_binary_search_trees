@@ -160,20 +160,11 @@ puts "\n"
 
 # What if there were no 'if'?
 class Animal
-  # @animals = %w[a b c]
-  # @@cats = %w[d e f]
-  # def self.animals
-  #   @animals
-  # end
-
   def name
     @name
   end
 
   def name=(name)
-    # self.class.hello
-    # puts "@animals: #{self.class.animals}"
-    # puts "@@cats: #{@@cats}"
     @name = name
   end
 
@@ -185,10 +176,6 @@ class Animal
     animal.name = id
     animal
   end
-
-  # def self.hello
-  #   p 'hello'
-  # end
 end
 
 animal = Animal.new
