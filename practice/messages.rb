@@ -161,27 +161,38 @@ puts "\n"
 class Animal
   @animals = []
 
-  def initialize(name)
-    @name = name
+  def self.animals
+    @animals
   end
 
-  # def name
-  #   @name
-  # end
+  def self.add(animal)
+    @animals.push(animal)
+  end
+
+  # factory method
+  def self.find(id)
+    animals.find { |element| element.name == id }
+  end
+
+  def initialize(name)
+    @name = name
+    self.class.add(self)
+  end
+
+  def name
+    @name
+  end
 
   # def name=(name)
   #   @name = name
   # end
-
-  # factory method
-  def self.find(id)
-    new(id)
-
-    # animal = new
-    # animal.name = id
-    # animal
-  end
 end
+
+Animal.new('pig')
+Animal.new('cat')
+Animal.new('dog')
+
+p Animal.animals
 
 # binding.pry
 animal = Animal.find('pig')
