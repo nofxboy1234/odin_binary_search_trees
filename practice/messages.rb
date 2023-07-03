@@ -72,7 +72,7 @@ class FalseClass
   def if_true
     self
   end
-  
+
   def if_false
     yield
     self
@@ -90,7 +90,6 @@ end
 # (false).if_false { puts 'evaluated block' }
 # puts "\n"
 
-
 # 'Message sending' syntax for truthy/falsey
 class Object
   def if_true
@@ -107,7 +106,7 @@ class NilClass
   def if_true
     self
   end
-  
+
   def if_false
     yield
     self
@@ -131,9 +130,9 @@ end
 
 # return self so the new methods added to Object, FalseClass and NilClass
 # can be chained together.
-(1 == 1).
-  if_true { p 'is true' }.
-  if_false { p 'is false' }
+(1 == 1)
+  .if_true { p 'is true' }
+  .if_false { p 'is false' }
 puts "\n"
 
 if 1 == 2
@@ -142,9 +141,9 @@ else
   p 'is false'
 end
 
-(1 == 2).
-  if_true { p 'is true' }.
-  if_false { p 'is false' }
+(1 == 2)
+  .if_true { p 'is true' }
+  .if_false { p 'is false' }
 puts "\n"
 
 if nil
@@ -153,13 +152,17 @@ else
   p 'is false'
 end
 
-(nil).
-  if_true { p 'is true' }.
-  if_false { p 'is false' }
+nil
+  .if_true { p 'is true' }
+  .if_false { p 'is false' }
 puts "\n"
 
 # What if there were no 'if'?
 class Animal
+  def initialize(name)
+    @name = name
+  end
+
   # def name
   #   @name
   # end
@@ -170,18 +173,14 @@ class Animal
 
   # factory method
   def self.find(id)
-    # new(id)
+    new(id)
 
-    animal = new
-    animal.name = id
-    animal
+    # animal = new
+    # animal.name = id
+    # animal
   end
 end
 
-animal = Animal.new
-p animal.name
-
 # binding.pry
-animal2 = Animal.find('pig')
-p animal2.name
-p animal2
+animal = Animal.find('pig')
+p animal
