@@ -284,77 +284,77 @@ puts "\n"
 puts "\n"
 
 # Null Object Pattern is a small concrete instance of a much larger abstraction
-class House
-  def recite
-    (1..data.length).map { |i| line(i) }.join("\n")
-  end
+# class House
+#   def recite
+#     (1..data.length).map { |i| line(i) }.join("\n")
+#   end
   
-  def line(number)
-    "This is #{phrase(number)}.\n"
-  end
+#   def line(number)
+#     "This is #{phrase(number)}.\n"
+#   end
   
-  def phrase(number)
-    # data.last(number).join(' ')
-    parts(number).join(' ')
-  end
+#   def phrase(number)
+#     # data.last(number).join(' ')
+#     parts(number).join(' ')
+#   end
 
-  def parts(number)
-    data.last(number)
-  end
+#   def parts(number)
+#     data.last(number)
+#   end
   
-  def data
-    (1..12).to_a
-  end
-end
+#   def data
+#     (1..12).to_a
+#   end
+# end
 
-puts House.new.line(1)
-puts House.new.line(2)
-puts House.new.line(3)
-puts "\n"
-puts House.new.recite
-puts "\n"
-puts "\n"
+# puts House.new.line(1)
+# puts House.new.line(2)
+# puts House.new.line(3)
+# puts "\n"
+# puts House.new.recite
+# puts "\n"
+# puts "\n"
 
 # New feature request: RandomHouse
 # Task: Implement RandomHouse without 'if' statements
 
 # Inheritance?
-class RandomHouse < House
-  def data
-    @data ||= super.shuffle
-  end
-end
+# class RandomHouse < House
+#   def data
+#     @data ||= super.shuffle
+#   end
+# end
 
-random_house = RandomHouse.new
-puts random_house.line(1)
-puts random_house.line(12)
-puts "\n"
-puts "\n"
+# random_house = RandomHouse.new
+# puts random_house.line(1)
+# puts random_house.line(12)
+# puts "\n"
+# puts "\n"
 
 # New feature request: EchoHouse
 # Task: Implement EchoHouse without 'if' statements
 
 # Inheritance?
-class EchoHouse < House
-  def parts(number)
-    super.zip(super).flatten
-  end
-end
+# class EchoHouse < House
+#   def parts(number)
+#     super.zip(super).flatten
+#   end
+# end
 
-puts EchoHouse.new.line(1)
-puts EchoHouse.new.line(12)
-puts "\n"
-puts "\n"
+# puts EchoHouse.new.line(1)
+# puts EchoHouse.new.line(12)
+# puts "\n"
+# puts "\n"
 
 # New feature request: EchoHouse
 # Task: Implement EchoHouse without 'if' statements
 
 # Can inherit RandomHouse#data, and duplicate EchoHouse#parts
-class RandomEchoHouse < RandomHouse
-  def parts(number)
-    super.zip(super).flatten
-  end
-end
+# class RandomEchoHouse < RandomHouse
+#   def parts(number)
+#     super.zip(super).flatten
+#   end
+# end
 # or
 # Can inherit EchoHouse#parts, and duplicate RandomHouse#data
 # class RandomEchoHouse < EchoHouse
@@ -378,66 +378,66 @@ end
 
 # What does RandomHouse change?
 # Reveal how things differ, by making them more alike
-class House
-  def recite
-    (1..data.length).map { |i| line(i) }.join("\n")
-  end
+# class House
+#   def recite
+#     (1..data.length).map { |i| line(i) }.join("\n")
+#   end
   
-  def line(number)
-    "This is #{phrase(number)}.\n"
-  end
+#   def line(number)
+#     "This is #{phrase(number)}.\n"
+#   end
   
-  def phrase(number)
-    # data.last(number).join(' ')
-    parts(number).join(' ')
-  end
+#   def phrase(number)
+#     # data.last(number).join(' ')
+#     parts(number).join(' ')
+#   end
 
-  def parts(number)
-    data.last(number)
-  end
+#   def parts(number)
+#     data.last(number)
+#   end
   
-  def data
-    (1..12).to_a
-  end
-end
+#   def data
+#     (1..12).to_a
+#   end
+# end
 
-class RandomHouse < House
-  def data
-    @data ||= super.shuffle
-  end
-end
+# class RandomHouse < House
+#   def data
+#     @data ||= super.shuffle
+#   end
+# end
 
 # Make House#data more like RandomHouse#data
-class House
-  DATA = (1..12).to_a
+# class House
+#   DATA = (1..12).to_a
 
-  def recite
-    (1..data.length).map { |i| line(i) }.join("\n")
-  end
+#   def recite
+#     (1..data.length).map { |i| line(i) }.join("\n")
+#   end
   
-  def line(number)
-    "This is #{phrase(number)}.\n"
-  end
+#   def line(number)
+#     "This is #{phrase(number)}.\n"
+#   end
   
-  def phrase(number)
-    # data.last(number).join(' ')
-    parts(number).join(' ')
-  end
+#   def phrase(number)
+#     # data.last(number).join(' ')
+#     parts(number).join(' ')
+#   end
 
-  def parts(number)
-    data.last(number)
-  end
+#   def parts(number)
+#     data.last(number)
+#   end
 
-  def data
-    @data ||= DATA
-  end
-end
+#   def data
+#     @data ||= DATA
+#   end
+# end
 
-class RandomHouse < House
-  def data
-    @data ||= DATA.shuffle
-  end
-end
+# class RandomHouse < House
+#   def data
+#     @data ||= DATA.shuffle
+#   end
+# end
 
 # What does RandomHouse change? - Name the concept
 # | class       | data |   ???   |
@@ -461,3 +461,38 @@ class RandomOrder
     data.shuffle
   end
 end
+
+class House
+  DATA = (1..12).to_a
+
+  attr_reader :data
+
+  def initialize(orderer: DefaultOrder.new)
+    @data = orderer.order(DATA)
+  end
+
+  def recite
+    (1..data.length).map { |i| line(i) }.join("\n")
+  end
+  
+  def line(number)
+    "This is #{phrase(number)}.\n"
+  end
+  
+  def phrase(number)
+    # data.last(number).join(' ')
+    parts(number).join(' ')
+  end
+
+  def parts(number)
+    data.last(number)
+  end
+
+  # def data
+  #   DATA
+  # end
+end
+
+# Remove 'ordering' responsibility from House
+# Inject orderer into House
+puts House.new.line(12)
