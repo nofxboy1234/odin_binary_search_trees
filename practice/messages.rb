@@ -548,9 +548,14 @@ class House
   # end
 end
 
-puts House.new.line(12)
-puts House.new(formatter: EchoFormatter.new).line(12)
+# puts House.new.line(12)
+# puts House.new(formatter: EchoFormatter.new).line(12)
 
 # Defined 2 roles and they each have 2 players
 # Orderer Role -> DefaultOrder, RandomOrder
 # Formatter Role -> DefaultFormatter, EchoFormatter
+
+puts House.new.recite
+puts House.new(orderer: RandomOrder.new).recite
+puts House.new(formatter: EchoFormatter.new).recite
+puts House.new(orderer: RandomOrder.new, formatter: EchoFormatter.new).recite
