@@ -328,5 +328,18 @@ end
 random_house = RandomHouse.new
 puts random_house.line(1)
 puts random_house.line(12)
+puts "\n"
+puts "\n"
 
 # New feature request: EchoHouse
+# Task: Implement EchoHouse without 'if' statements
+
+# Inheritance?
+class EchoHouse < House
+  def parts(number)
+    super.zip(super).flatten
+  end
+end
+
+puts EchoHouse.new.line(1)
+puts EchoHouse.new.line(12)
