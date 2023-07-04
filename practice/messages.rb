@@ -303,7 +303,7 @@ class House
   end
   
   def data
-    array = (1..12).to_a
+    (1..12).to_a
   end
 end
 
@@ -378,3 +378,86 @@ end
 
 # What does RandomHouse change?
 # Reveal how things differ, by making them more alike
+class House
+  def recite
+    (1..data.length).map { |i| line(i) }.join("\n")
+  end
+  
+  def line(number)
+    "This is #{phrase(number)}.\n"
+  end
+  
+  def phrase(number)
+    # data.last(number).join(' ')
+    parts(number).join(' ')
+  end
+
+  def parts(number)
+    data.last(number)
+  end
+  
+  def data
+    (1..12).to_a
+  end
+end
+
+class RandomHouse < House
+  def data
+    @data ||= super.shuffle
+  end
+end
+
+# Make House#data more like RandomHouse#data
+class House
+  DATA = (1..12).to_a
+
+  def recite
+    (1..data.length).map { |i| line(i) }.join("\n")
+  end
+  
+  def line(number)
+    "This is #{phrase(number)}.\n"
+  end
+  
+  def phrase(number)
+    # data.last(number).join(' ')
+    parts(number).join(' ')
+  end
+
+  def parts(number)
+    data.last(number)
+  end
+
+  def data
+    @data ||= DATA
+  end
+end
+
+class RandomHouse < House
+  def data
+    @data ||= DATA.shuffle
+  end
+end
+
+# What does RandomHouse change? - Name the concept
+# | class       | data |   ???   |
+# --------------------------------
+# | House       | DATA |         |
+# | RandomHouse | DATA | shuffle |
+
+# | class       | data |   order |
+# --------------------------------
+# | House       | DATA |         |
+# | RandomHouse | DATA | shuffle |
+# Orderer is a role
+class DefaultOrder
+  def order(data)
+    data
+  end
+end
+
+class RandomOrder
+  def order(data)
+    data.shuffle
+  end
+end
