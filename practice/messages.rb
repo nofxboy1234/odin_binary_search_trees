@@ -294,7 +294,12 @@ class House
   end
   
   def phrase(number)
-    data.last(number).join(' ')
+    # data.last(number).join(' ')
+    parts(number).join(' ')
+  end
+
+  def parts(number)
+    data.last(number)
   end
   
   def data
@@ -323,3 +328,5 @@ end
 random_house = RandomHouse.new
 puts random_house.line(1)
 puts random_house.line(12)
+
+# New feature request: EchoHouse
