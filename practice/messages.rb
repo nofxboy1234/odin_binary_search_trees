@@ -559,3 +559,11 @@ puts House.new.recite
 puts House.new(orderer: RandomOrder.new).recite
 puts House.new(formatter: EchoFormatter.new).recite
 puts House.new(orderer: RandomOrder.new, formatter: EchoFormatter.new).recite
+
+# We have less code, no duplication, units of pluggable behaviour
+# This is Composition + Dependency Injection -> Object-Oriented Design
+
+# Abstraction Seeking
+# Message Centric
+# Condition Averse
+# SmallTalk Infected
