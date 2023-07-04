@@ -307,3 +307,19 @@ puts House.new.line(2)
 puts House.new.line(3)
 puts "\n"
 puts House.new.recite
+puts "\n"
+puts "\n"
+
+# New feature request: RandomHouse
+# Task: Implement RandomHouse without 'if' statements
+
+# Inheritance?
+class RandomHouse < House
+  def data
+    @data ||= super.shuffle
+  end
+end
+
+random_house = RandomHouse.new
+puts random_house.line(1)
+puts random_house.line(12)
