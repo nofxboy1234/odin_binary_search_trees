@@ -348,3 +348,30 @@ puts "\n"
 
 # New feature request: EchoHouse
 # Task: Implement EchoHouse without 'if' statements
+
+# Can inherit RandomHouse#data, and duplicate EchoHouse#parts
+class RandomEchoHouse < RandomHouse
+  def parts(number)
+    super.zip(super).flatten
+  end
+end
+# or
+# Can inherit EchoHouse#parts, and duplicate RandomHouse#data
+# class RandomEchoHouse < EchoHouse
+#   def data
+#     @data ||= super.shuffle
+#   end
+# end
+# or
+# Duplicate EchoHouse#parts, and duplicate RandomHouse#data
+# class RandomEchoHouse < House
+#   def data
+#     @data ||= super.shuffle
+#   end
+
+#   def parts(number)
+#     super.zip(super).flatten
+#   end
+# end
+
+# Inheritance if for specialization, not for sharing code
