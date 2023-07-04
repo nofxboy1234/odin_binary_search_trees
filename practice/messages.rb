@@ -567,3 +567,11 @@ puts House.new(orderer: RandomOrder.new, formatter: EchoFormatter.new).recite
 # Message Centric
 # Condition Averse
 # SmallTalk Infected
+
+# There's no such thing as one specialization
+# When you see that you have a variant, it means that you have 2
+
+# Isolate the thing that varies
+# Name the concept
+# Define the role
+# Inject the players
