@@ -281,3 +281,29 @@ p animals
 # Talk to all the objects like they're the same thing
 animals.each { |animal| puts animal.name }
 puts "\n"
+puts "\n"
+
+# Null Object Pattern is a small concrete instance of a much larger abstraction
+class House
+  def recite
+    (1..data.length).map { |i| line(i) }.join("\n")
+  end
+  
+  def line(number)
+    "This is #{phrase(number)}.\n"
+  end
+  
+  def phrase(number)
+    data.last(number).join(' ')
+  end
+  
+  def data
+    array = (1..12).to_a
+  end
+end
+
+puts House.new.line(1)
+puts House.new.line(2)
+puts House.new.line(3)
+puts "\n"
+puts House.new.recite
