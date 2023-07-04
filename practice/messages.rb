@@ -462,12 +462,66 @@ class RandomOrder
   end
 end
 
+# class House
+#   DATA = (1..12).to_a
+
+#   attr_reader :data
+
+#   def initialize(orderer: DefaultOrder.new)
+#     @data = orderer.order(DATA)
+#   end
+
+#   def recite
+#     (1..data.length).map { |i| line(i) }.join("\n")
+#   end
+  
+#   def line(number)
+#     "This is #{phrase(number)}.\n"
+#   end
+  
+#   def phrase(number)
+#     # data.last(number).join(' ')
+#     parts(number).join(' ')
+#   end
+
+#   def parts(number)
+#     data.last(number)
+#   end
+
+#   # def data
+#   #   DATA
+#   # end
+# end
+
+# Remove 'ordering' responsibility from House
+# Inject orderer into House
+# puts House.new.line(12)
+# puts House.new(orderer: RandomOrder.new).line(12)
+# This is Composition: 
+#   Inject an object 
+#   to play the role 
+#   of the thing that varies
+
+# How to do EchoHouse? - 2 variants of the same role
+class DefaultFormatter
+  def format(parts)
+    parts
+  end
+end
+
+class EchoFormatter
+  def format(parts)
+    parts.zip(parts).flatten
+  end
+end
+
 class House
   DATA = (1..12).to_a
 
-  attr_reader :data
+  attr_reader :formatter, :data
 
-  def initialize(orderer: DefaultOrder.new)
+  def initialize(orderer: DefaultOrder.new, formatter: DefaultFormatter.new)
+    @formatter = formatter
     @data = orderer.order(DATA)
   end
 
@@ -485,7 +539,8 @@ class House
   end
 
   def parts(number)
-    data.last(number)
+    # data.last(number)
+    formatter.format(data.last(number))
   end
 
   # def data
@@ -493,6 +548,9 @@ class House
   # end
 end
 
-# Remove 'ordering' responsibility from House
-# Inject orderer into House
 puts House.new.line(12)
+puts House.new(formatter: EchoFormatter.new).line(12)
+
+# Defined 2 roles and they each have 2 players
+# Orderer Role -> DefaultOrder, RandomOrder
+# Formatter Role -> DefaultFormatter, EchoFormatter
