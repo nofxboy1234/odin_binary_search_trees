@@ -375,3 +375,6 @@ end
 # end
 
 # Inheritance if for specialization, not for sharing code
+
+# What does RandomHouse change?
+# Reveal how things differ, by making them more alike
