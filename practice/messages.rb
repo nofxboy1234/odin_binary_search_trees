@@ -343,3 +343,8 @@ end
 
 puts EchoHouse.new.line(1)
 puts EchoHouse.new.line(12)
+puts "\n"
+puts "\n"
+
+# New feature request: EchoHouse
+# Task: Implement EchoHouse without 'if' statements
