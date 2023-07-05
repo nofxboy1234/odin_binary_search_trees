@@ -51,6 +51,9 @@ class Gear
   #   Do not make assertions about their result
   #   Do not expect to send them
 
+  # Do not test messages (Query/Command) (public/private) sent to self:
+  #   Do not expect to send them
+
   # Caveat: Break private test rule if it saves $$$$ during development
   # You can test private methods e.g. you're TDD'ing a complex private algorithm, but
   # delete them afterwards, otherwise it can make people hesitant to change and improve
