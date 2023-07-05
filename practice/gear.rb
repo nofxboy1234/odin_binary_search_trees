@@ -10,6 +10,9 @@ class Gear
 
   # Sends a private message to itself (ration)
   # Sends a message to a collaborating object (wheel.diameter) -> Wheel
+  #   Do not test Outgoing Query messages
+  #     Do not make assertions about their result
+  #     Do not expect to send them
 
   # Incoming Query message: changes nothing (no side effects) but does a calculation and returns a result.
   # Test Incoming Query messages by making assertions about what they send back.
@@ -45,8 +48,8 @@ class Gear
   # method is correct, the this #ratio method is correct.
 
   # Do not test private messages:
-  # Do not make assertions about their result
-  # Do not expect to send them
+  #   Do not make assertions about their result
+  #   Do not expect to send them
 
   # Caveat: Break private test rule if it saves $$$$ during development
   # You can test private methods e.g. you're TDD'ing a complex private algorithm, but
