@@ -64,6 +64,18 @@ class Gear
   # The distant side-effect is not Gear's responsibility - it should not even
   # know that is what's happening - Reaching across a bunch of intermediate objects
   # and testing a distant side-effect, is an Integration Test.
+
+  # The test for observer.changed does not depend on all the objects
+  # and messages between you and the distant side-effect.
+  # The test depends on the message (interface)
+  # It tests the thing for which Gear is responsible.
+  # Gear is responsible for sending #changed to observer.
+  # It tests at the nearest edge (API).
+
+  # Code that can tolerate change, couples to stability.
+  # Testing in this way, places a bet, that the API (the nearest edge),
+  # that message that you're sending, is more stable than the distant
+  # side-effect and the path to it.
   def changed
     observer.changed(chainring, cog)
   end
