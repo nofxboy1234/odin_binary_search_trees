@@ -10,7 +10,7 @@ class Gear
 
   # Sends a private message to itself (ration)
   # Sends a message to a collaborating object (wheel.diameter) -> Wheel
-  #   Do not test Outgoing Query messages
+  #   Do not test Outgoing Query messages (wheel.diameter) (just like messages sent to self)
   #     Do not make assertions about their result
   #     Do not expect to send them
 
@@ -51,13 +51,15 @@ class Gear
   #   Do not make assertions about their result
   #   Do not expect to send them
 
-  # Do not test messages (Query/Command) (public/private) sent to self:
-  #   Do not expect to send them
-
   # Caveat: Break private test rule if it saves $$$$ during development
   # You can test private methods e.g. you're TDD'ing a complex private algorithm, but
   # delete them afterwards, otherwise it can make people hesitant to change and improve
   # your private code, because they don't want to deal with those private tests.
+  
+  # Do not test messages (Query/Command) (public/private) sent to self:
+  #   Do not make assertions about their result
+  #   Do not expect to send them
+
   def ratio
     chainring / cog.to_f
   end
