@@ -17,6 +17,7 @@ RSpec.describe Gear do
     it 'sets cog to a new value' do
       # Send the message that causes the side-effect
       gear.set_cog(27)
+      # Make an assertion about the value of the side-effect
       expect(gear.cog).to eq(27)
     end
   end
