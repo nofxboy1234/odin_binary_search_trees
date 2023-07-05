@@ -14,6 +14,9 @@ class Gear
   #     Do not make assertions about their result
   #     Do not expect to send them
 
+  # Messages sent to self and Outgoing Query messages
+  # have no visible side-effects
+
   # Incoming Query message: changes nothing (no side effects) but does a calculation and returns a result.
   # Test Incoming Query messages by making assertions about what they send back.
   # Test the interface, not the implementation.
