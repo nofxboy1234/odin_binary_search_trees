@@ -15,7 +15,10 @@ class Gear
   #     Do not expect to send them
 
   # Messages sent to self and Outgoing Query messages
-  # have no visible side-effects
+  # have no Visible side-effects.
+  # From the sending side, if you're sending a message that does not have side effects,
+  # it is invisible to the rest of your app.
+  # The sender should not test it.
 
   # Incoming Query message: changes nothing (no side effects) but does a calculation and returns a result.
   # Test Incoming Query messages by making assertions about what they send back.
@@ -50,7 +53,7 @@ class Gear
   # If a method in your public interface (#gear_inches) calls this, if the test for that public
   # method is correct, the this #ratio method is correct.
 
-  # Do not test private messages:
+  # Do not test private messages (don't get bound to implementation):
   #   Do not make assertions about their result
   #   Do not expect to send them
 
@@ -59,7 +62,7 @@ class Gear
   # delete them afterwards, otherwise it can make people hesitant to change and improve
   # your private code, because they don't want to deal with those private tests.
   
-  # Do not test messages (Query/Command) (public/private) sent to self:
+  # Do not test messages (Query/Command) (public/private) sent to self (don't get bound to implementation):
   #   Do not make assertions about their result
   #   Do not expect to send them
 
