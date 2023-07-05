@@ -15,8 +15,9 @@ class Gear
   #     Do not expect to send them
 
   # Messages sent to self and Outgoing Query messages
-  # have no Visible side-effects.
-  # From the sending side, if you're sending a message that does not have side effects,
+  # both have no Visible side-effects.
+
+  # From the sending side, if you're sending a message that does not have Visible side effects,
   # it is invisible to the rest of your app.
   # The sender should not test it.
 
