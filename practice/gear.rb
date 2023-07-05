@@ -1,11 +1,11 @@
-# Incoming Query Messages
 class Gear
-  attr_reader :chainring, :cog, :wheel
+  attr_reader :chainring, :cog, :wheel, :observer
 
-  def initialize(chainring:, cog:, wheel:)
+  def initialize(chainring:, cog:, wheel:, observer:)
     @chainring = chainring
     @cog = cog
     @wheel = wheel
+    @observer = observer
   end
 
   # Sends a private message to itself (ration)
@@ -50,6 +50,22 @@ class Gear
   # - Direct Public side-effects
   def set_cog(new_cog)
     @cog = new_cog
+    changed
+    @cog
+  end
+
+  # changed method has an Outgoing Command message (observer.changed)
+  # #changed message must get sent to observer, otherwise the app will not be correct.
+  # observer.change creates side-effects upon which others depend.
+
+  # If you make assertions about what happens when an Outgoing Command message
+  # is sent, it creates a dependency between you and every object and message
+  # between you and that distant side-effect.
+  # The distant side-effect is not Gear's responsibility - it should not even
+  # know that is what's happening - Reaching across a bunch of intermediate objects
+  # and testing a distant side-effect, is an Integration Test.
+  def changed
+    observer.changed(chainring, cog)
   end
 
   private
