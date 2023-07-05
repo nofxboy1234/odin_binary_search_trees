@@ -20,6 +20,15 @@ class Gear
     ratio * wheel.diameter
   end
 
+  # This is a Query/Command combo
+  # It returns the result - Query part
+  # Incoming Command message: It sets this value so that when
+  # other people send :cog later, they see a different thing.
+  # Test the Command part of this.
+  def set_cog(new_cog)
+    @cog = new_cog
+  end
+
   private
 
   def ratio
