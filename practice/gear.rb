@@ -76,6 +76,10 @@ class Gear
   # Testing in this way, places a bet, that the API (the nearest edge),
   # that message that you're sending, is more stable than the distant
   # side-effect and the path to it.
+
+  # Outgoing Command message: Expect to send
+  # Caveat: Sometimes the side-effect is cheap and close (stable and cheap) 
+  # - if it is, just plug in the object.
   def changed
     observer.changed(chainring, cog)
   end
