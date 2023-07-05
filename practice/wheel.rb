@@ -7,7 +7,7 @@ class Wheel
     @tire = tire
   end
 
-  # Incoming Query message: changes nothing but does a calculation and returns a result
+  # Incoming Query message: changes nothing (no side effects) but does a calculation and returns a result
   # Test Incoming Query messages by making assertions about what they send back
   def diameter
     rim + (tire * 2)
