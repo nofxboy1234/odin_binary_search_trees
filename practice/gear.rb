@@ -25,6 +25,14 @@ class Gear
   # Incoming Command message: It sets this value so that when
   # other people send :cog later, they see a different thing.
   # Test the Command part of this.
+  # Test Incoming Command messages by making assertions about Direct Public side-effects.
+  # Direct: it's the responsibility of the Last ruby class involved.
+
+  # Receiver of incoming message
+  # has sole responsibility
+  # for asserting
+  # - the result
+  # - Direct Public side-effects
   def set_cog(new_cog)
     @cog = new_cog
   end
