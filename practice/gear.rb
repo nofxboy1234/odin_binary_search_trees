@@ -17,6 +17,11 @@ class Gear
   # Messages sent to self and Outgoing Query messages
   # both have no Visible side-effects.
 
+  # Notes to self: 
+  #   I think Visible side-effects = Direct Public side-effects
+  #   I think Command messages sent to self can have Visible side effects, but the methods
+  #   that cause the side-effects will have their own tests, if public.
+
   # From the sending side, if you're sending a message that does not have Visible side effects,
   # it is invisible to the rest of your app.
   # The sender should not test it.
