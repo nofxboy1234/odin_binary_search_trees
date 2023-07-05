@@ -39,6 +39,19 @@ class Gear
 
   private
 
+  # From sighting along the edges of space capsule POV:
+  # As far as the rest of your app is concerned, this method does not exist.
+  # If a method in your public interface (#gear_inches) calls this, if the test for that public
+  # method is correct, the this #ratio method is correct.
+
+  # Do not test private messages:
+  # Do not make assertions about their result
+  # Do not expect to send them
+
+  # Caveat: Break private test rule if it saves $$$$ during development
+  # You can test private methods e.g. you're TDD'ing a complex private algorithm, but
+  # delete them afterwards, otherwise it can make people hesitant to change and improve
+  # your private code, because they don't want to deal with those private tests.
   def ratio
     chainring / cog.to_f
   end
