@@ -12,6 +12,9 @@
 # Unit tests prove that every cell behaves correctly.
 # Integration tests prove that the beast is alive.
 
+# Rule: Honour the contract
+# Ensure test doubles stay in sync with the API
+
 class Wheel
   attr_reader :rim, :tire
 
