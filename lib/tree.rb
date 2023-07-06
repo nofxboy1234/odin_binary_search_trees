@@ -31,6 +31,12 @@ class Tree
     right = build_tree(array, mid_index + 1, end_index)
     @root = Node.new(data: array[mid_index], left: left, right: right)
   end
+
+  def pretty_print(node, prefix = '', is_left = true)
+    pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
+    puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
+    pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
+  end
 end
 
 # rubocop:enable Lint/RedundantCopDisableDirective

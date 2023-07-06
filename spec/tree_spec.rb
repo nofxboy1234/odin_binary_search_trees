@@ -59,8 +59,8 @@ RSpec.describe Tree do
         end_index = array.length - 1
         root_node = tree.build_tree(array, start_index, end_index)
         expect(root_node.data).to eq(5)
+        tree.pretty_print(root_node)
       end
-
     end
   end
 end
