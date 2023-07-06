@@ -13,26 +13,24 @@ class Tree
   end
 
   def root
-    @root ||= build_tree
+    @root ||= build_tree(array, 0, array.length - 1)
   end
 
   def array
     # @array ||= NilArray.new
     # @array ||= []
-    @array
+    @array.uniq.sort
   end
 
-  def build_tree
-    clean_array = prepare_array
+  def build_tree(array, start_index, end_index)
+    return if start_index > end_index
 
-    @root = Node.new
-    @root
+    mid_index = (start_index + end_index) / 2
+
+    left = build_tree(array, start_index, mid_index - 1)
+    right = build_tree(array, mid_index + 1, end_index)
+    @root = Node.new(data: array[mid_index], left: left, right: right)
   end
-
-  def prepare_array
-    array.uniq.sort
-  end
-
 end
 
 # rubocop:enable Lint/RedundantCopDisableDirective
