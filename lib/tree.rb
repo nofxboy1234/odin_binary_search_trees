@@ -24,7 +24,7 @@ class Tree
   def build_tree
     # sorted_array = array.uniq.sort
 
-    # root_node = Node.new(nil, nil, nil)
+    root_node = Node.new
   end
 end
 
