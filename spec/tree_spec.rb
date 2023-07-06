@@ -1,7 +1,7 @@
 require './lib/tree'
 
 RSpec.describe Tree do
-  subject(:tree) { described_class.new(array: [1, 2, 3]) }
+  subject(:tree) { described_class.new(array: [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]) }
 
   describe '#root', root: true do
     let(:root_node) { double('root_node') }
@@ -33,8 +33,8 @@ RSpec.describe Tree do
   end
 
   describe '#array', array: true do
-    it 'returns @array' do
-      expect(tree.array).to eq([1, 2, 3])
+    it 'returns @array without duplicates and sorted' do
+      expect(tree.array).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
     end
   end
 
@@ -46,8 +46,7 @@ RSpec.describe Tree do
     # 4. calculate mid of left subarray and make it root of left subtree of A
     # 5. calculate mid of right subarray and make it root of right subtree of A
 
-    subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7, 8, 9]) }
-    # subject(:tree) { described_class.new(array) }
+    # subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7, 8, 9]) }
 
     describe 'takes an array of data and turns it into a balance BST' do
       context 'when array is [1, 2, 3, 4, 5, 6, 7, 8, 9]' do
