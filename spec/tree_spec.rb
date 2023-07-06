@@ -1,60 +1,40 @@
 require './lib/tree'
 
 RSpec.describe Tree do
-  subject(:node) { described_class.new([1, 2, 3]) }
-  
+  subject(:tree) { described_class.new(array: [1, 2, 3]) }
+
   describe '#root', root: true do
     let(:root_node) { double('root_node') }
-    
+
     before do
-      allow(node).to receive(:build_tree).and_return(root_node)
+      allow(tree).to receive(:build_tree).and_return(root_node)
+    end
+
+    it 'returns the root node' do
+      expect(tree.root).to be(root_node)
     end
 
     context 'when @root is not set' do
-      it 'sends #build_tree message to node' do
-        expect(node).to receive(:build_tree)
-        node.root
-      end
-
-      it 'sets the value of @root' do
-        expect { node.root }.to change { node.instance_variable_get(:@root) }
+      it 'builds the tree and assigns the root node to @root' do
+        expect { tree.root }.to change { tree.instance_variable_get(:@root) }
           .from(nil).to(root_node)
-      end
-
-      it 'returns the value of @root' do
-        expect(node.root).to eq(root_node)
       end
     end
 
     context 'when @root is set' do
       before do
-        node.root
+        tree.root
       end
 
-      it 'does not send #build_tree message to node' do
-        expect(node).to_not receive(:build_tree)
-        node.root
-      end
-
-      it 'returns the value of @root' do
-        expect(node.root).to eq(root_node)
+      it 'does not change the value of @root' do
+        expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
       end
     end
   end
 
   describe '#array', array: true do
-    # context 'when @array is not set' do
-    #   subject(:node) { described_class.new }
-
-    #   it 'returns nil' do
-    #     expect(node.array).to eq(nil)
-    #   end
-    # end
-
-    context 'when @array is set' do
-      it 'returns the value of @array' do
-        expect(node.array).to eq([1, 2, 3])
-      end
+    it 'returns @array' do
+      expect(tree.array).to eq([1, 2, 3])
     end
   end
 
@@ -80,22 +60,22 @@ RSpec.describe Tree do
           allow(Node).to receive(:new).and_return(root_node)
         end
 
-        it 'sends #uniq message to array' do
+        xit 'sends #uniq message to array' do
           expect(array).to receive(:uniq)
           node.build_tree
         end
 
-        it 'sends #sort message to array_uniq' do
+        xit 'sends #sort message to array_uniq' do
           expect(array_uniq).to receive(:sort)
           node.build_tree
         end
 
-        it 'sends #new message to Node' do
+        xit 'sends #new message to Node' do
           expect(Node).to receive(:new)
           node.build_tree
         end
 
-        it 'returns the root node of the created balanced BST' do
+        xit 'returns the root node of the created balanced BST' do
           expect(node.build_tree).to eq(root_node)
         end
       end

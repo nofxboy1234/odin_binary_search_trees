@@ -7,10 +7,8 @@ require './lib/node'
 
 # Tree represents a Binary Search Tree
 class Tree
-  include Comparable
-
   # def initialize(array = NilArray.new)
-  def initialize(array)
+  def initialize(array: nil)
     @array = array
   end
 
@@ -24,9 +22,9 @@ class Tree
   end
 
   def build_tree
-    sorted_array = array.uniq.sort
+    # sorted_array = array.uniq.sort
 
-    root_node = Node.new(nil, nil, nil)
+    # root_node = Node.new(nil, nil, nil)
   end
 end
 
