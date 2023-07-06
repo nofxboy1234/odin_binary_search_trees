@@ -18,15 +18,21 @@ class Tree
 
   def array
     # @array ||= NilArray.new
+    # @array ||= []
     @array
   end
 
   def build_tree
-    # sorted_array = array.uniq.sort
+    clean_array = prepare_array
 
     @root = Node.new
     @root
   end
+
+  def prepare_array
+    array.uniq.sort
+  end
+
 end
 
 # rubocop:enable Lint/RedundantCopDisableDirective

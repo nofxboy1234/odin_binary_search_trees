@@ -48,38 +48,15 @@ RSpec.describe Tree do
 
     subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
     # subject(:tree) { described_class.new(array) }
-    # let(:array) { double('array') }
-    # let(:array_uniq) { double('array_uniq') }
-    # let(:array_sort) { double('array_sort') }
-    # let(:root_node) { double('root_node') }
 
     describe 'takes an array of data and turns it into a balance BST' do
       before do
-        # allow(array).to receive(:uniq).and_return(array_uniq)
-        # allow(array_uniq).to receive(:sort).and_return(array_sort)
-        # allow(Node).to receive(:new).and_return(root_node)
       end
 
       it 'returns the root node of the created balanced BST' do
         expect(tree.build_tree).to eq(Node.new)
       end
 
-      # describe 'removes duplicates' do
-      #   it 'sends #uniq message to array' do
-      #     expect(array).to receive(:uniq)
-      #     tree.build_tree
-      #   end
-      # end
-
-      # xit 'sends #sort message to array_uniq' do
-      #   expect(array_uniq).to receive(:sort)
-      #   tree.build_tree
-      # end
-
-      # xit 'sends #new message to Node' do
-      #   expect(Node).to receive(:new)
-      #   tree.build_tree
-      # end
     end
   end
 end
