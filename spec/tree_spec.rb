@@ -46,39 +46,39 @@ RSpec.describe Tree do
     # 4. calculate mid of left subarray and make it root of left subtree of A
     # 5. calculate mid of right subarray and make it root of right subtree of A
 
-    subject(:node) { described_class.new(array) }
-    let(:array) { double('array') }
-    let(:array_uniq) { double('array_uniq') }
-    let(:array_sort) { double('array_sort') }
-    let(:root_node) { double('root_node') }
+    # subject(:tree) { described_class.new(array) }
+    # let(:array) { double('array') }
+    # let(:array_uniq) { double('array_uniq') }
+    # let(:array_sort) { double('array_sort') }
+    # let(:root_node) { double('root_node') }
 
     describe 'takes an array of data and turns it into a balance BST' do
-      describe 'removes duplicates' do
-        before do
-          allow(array).to receive(:uniq).and_return(array_uniq)
-          allow(array_uniq).to receive(:sort).and_return(array_sort)
-          allow(Node).to receive(:new).and_return(root_node)
-        end
-
-        xit 'sends #uniq message to array' do
-          expect(array).to receive(:uniq)
-          node.build_tree
-        end
-
-        xit 'sends #sort message to array_uniq' do
-          expect(array_uniq).to receive(:sort)
-          node.build_tree
-        end
-
-        xit 'sends #new message to Node' do
-          expect(Node).to receive(:new)
-          node.build_tree
-        end
-
-        xit 'returns the root node of the created balanced BST' do
-          expect(node.build_tree).to eq(root_node)
-        end
+      before do
+        # allow(array).to receive(:uniq).and_return(array_uniq)
+        # allow(array_uniq).to receive(:sort).and_return(array_sort)
+        # allow(Node).to receive(:new).and_return(root_node)
       end
+
+      it 'returns the root node of the created balanced BST' do
+        expect(tree.build_tree).to eq(Node.new)
+      end
+
+      # describe 'removes duplicates' do
+      #   it 'sends #uniq message to array' do
+      #     expect(array).to receive(:uniq)
+      #     tree.build_tree
+      #   end
+      # end
+
+      # xit 'sends #sort message to array_uniq' do
+      #   expect(array_uniq).to receive(:sort)
+      #   tree.build_tree
+      # end
+
+      # xit 'sends #new message to Node' do
+      #   expect(Node).to receive(:new)
+      #   tree.build_tree
+      # end
     end
   end
 end
