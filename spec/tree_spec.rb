@@ -39,13 +39,14 @@ RSpec.describe Tree do
   end
 
   describe '#build_tree', build_tree: true do
-    # 1. initialize start = 0, end = length of array - 1
+    # 1. initialize start_index = 0, end_index = length of array - 1
     # 2. mid = (start_index + end_index) / 2
     # 3. create a tree node with mid as root (let's call it A)
     # recursively do following steps:
     # 4. calculate mid of left subarray and make it root of left subtree of A
     # 5. calculate mid of right subarray and make it root of right subtree of A
 
+    subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
     # subject(:tree) { described_class.new(array) }
     # let(:array) { double('array') }
     # let(:array_uniq) { double('array_uniq') }
