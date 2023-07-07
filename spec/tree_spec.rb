@@ -7,7 +7,7 @@ RSpec.describe Tree do
     let(:root_node) { double('root_node') }
 
     before do
-      allow(tree).to receive(:build_tree).and_return(root_node)
+      allow(tree).to receive(:build_tree_recursive).and_return(root_node)
     end
 
     it 'returns the root node' do
@@ -38,7 +38,7 @@ RSpec.describe Tree do
     end
   end
 
-  describe '#build_tree', build_tree: true do
+  describe '#build_tree_recursive', build_tree_recursive: true do
     # 1. initialize start_index = 0, end_index = length of array - 1
     # 2. mid = (start_index + end_index) / 2
     # 3. create a tree node with mid as root (let's call it A)
@@ -54,7 +54,7 @@ RSpec.describe Tree do
           array = tree.array
           start_index = 0
           end_index = array.length - 1
-          root_node = tree.build_tree(array, start_index, end_index)
+          root_node = tree.build_tree_recursive(array, start_index, end_index)
           expect(root_node.data).to eq(5)
           tree.pretty_print(root_node)
         end

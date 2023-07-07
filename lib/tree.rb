@@ -13,7 +13,7 @@ class Tree
   end
 
   def root
-    @root ||= build_tree(array, 0, array.length - 1)
+    @root ||= build_tree_recursive(array, 0, array.length - 1)
   end
 
   def array
@@ -22,13 +22,13 @@ class Tree
     @array.uniq.sort
   end
 
-  def build_tree(array, start_index, end_index)
+  def build_tree_recursive(array, start_index, end_index)
     return if start_index > end_index
 
     mid_index = (start_index + end_index) / 2
 
-    left = build_tree(array, start_index, mid_index - 1)
-    right = build_tree(array, mid_index + 1, end_index)
+    left = build_tree_recursive(array, start_index, mid_index - 1)
+    right = build_tree_recursive(array, mid_index + 1, end_index)
     @root = Node.new(data: array[mid_index], left: left, right: right)
   end
 
