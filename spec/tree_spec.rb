@@ -49,7 +49,7 @@ RSpec.describe Tree do
     # subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7, 8, 9]) }
 
     describe 'takes an array of data and turns it into a balance BST' do
-      context 'when array is [1, 2, 3, 4, 5, 6, 7, 8, 9]' do
+      context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
         it 'returns the root node (5) of the built balanced BST' do
           array = tree.array
           start_index = 0
