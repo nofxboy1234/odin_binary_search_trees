@@ -46,8 +46,6 @@ RSpec.describe Tree do
     # 4. calculate mid_index of left subarray and make it root of left subtree of A
     # 5. calculate mid_index of right subarray and make it root of right subtree of A
 
-    # subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7, 8, 9]) }
-
     describe 'takes an array of data and turns it into a balance BST' do
       context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
         it 'returns the root node (5) of the built balanced BST' do
@@ -56,6 +54,21 @@ RSpec.describe Tree do
           end_index = array.length - 1
           root_node = tree.build_tree_recursive(array, start_index, end_index)
           expect(root_node.data).to eq(5)
+          tree.pretty_print(root_node)
+        end
+      end
+    end
+
+    describe 'takes an array of data and turns it into a balance BST' do
+      context 'when array is [1, 2, 3, 4, 5, 6, 7]' do
+        subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
+
+        it 'returns the root node (4) of the built balanced BST' do
+          array = tree.array
+          start_index = 0
+          end_index = array.length - 1
+          root_node = tree.build_tree_recursive(array, start_index, end_index)
+          expect(root_node.data).to eq(4)
           tree.pretty_print(root_node)
         end
       end
