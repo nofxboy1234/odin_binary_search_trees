@@ -2,23 +2,6 @@
 
 Node = Struct.new('Node', :data, :left, :right)
 
-def level_order(root)
-  return if root.nil?
-
-  queue = []
-  queue.push(root) # Enqueue
-
-  while queue.length.positive? # At least 1 discovered node
-    # Dequeue - Take node out from front of the queue
-    current = queue.shift
-    # Visit = Read data in the Node
-    puts "#{current.data} "
-    # Push the children of the Node into the queue (Enqueue)
-    queue.push(current.left) if current.left
-    queue.push(current.right) if current.right
-  end
-end
-
 def preorder(root)
   return if root.nil?
 
