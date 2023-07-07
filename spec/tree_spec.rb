@@ -1,5 +1,9 @@
 require './lib/tree'
 
+# Build Balanced BST: Stack -> Recursion, Queue -> Iteration, 
+# Breadth-First search: Queue -> Iteration, Stack -> Recursion
+# Depth-First search: Stack -> Recursion
+
 RSpec.describe Tree do
   subject(:tree) { described_class.new(array: [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]) }
 
