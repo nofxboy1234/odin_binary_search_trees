@@ -32,6 +32,35 @@ class Tree
     @root = Node.new(data: array[mid_index], left: left, right: right)
   end
 
+  def build_tree_iterative(nums)
+    return if nums.empty?
+
+    mid = nums.length / 2
+    root = Node.new(data: nums[mid])
+
+    q = [[root, [0, mid - 1]], [root, [mid + 1, nums.length - 1]]]
+
+    while q.length.positive?
+      parent, left, right = q.shift.flatten
+
+      if left <= right && parent
+        mid = (left + right) / 2
+        child = Node.new(data: nums[mid])
+
+        if nums[mid] < parent.data
+          parent.left = child
+        else
+          parent.right = child
+        end
+
+        q.push([child, [left, mid - 1]])
+        q.push([child, [mid + 1, right]])
+      end
+    end
+
+    root
+  end
+
   def pretty_print(node, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"

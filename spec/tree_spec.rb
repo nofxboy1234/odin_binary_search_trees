@@ -79,4 +79,36 @@ RSpec.describe Tree do
       end
     end
   end
+
+  describe '#build_tree_iterative', build_tree_iterative: true do
+    describe 'takes an array of data and turns it into a balance BST' do
+      context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
+        it 'returns the root node (5) of the built balanced BST' do
+          array = tree.array
+          start_index = 0
+          end_index = array.length - 1
+          root_node = tree.build_tree_iterative(array)
+          expect(root_node.data).to eq(5)
+          tree.pretty_print(root_node)
+        end
+      end
+    end
+
+    describe 'takes an array of data and turns it into a balance BST' do
+      context 'when array is [1, 2, 3, 4, 5, 6, 7]' do
+        # https://youtu.be/VCTP81Ij-EM?t=224
+        subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
+
+        it 'returns the root node (4) of the built balanced BST' do
+          array = tree.array
+          start_index = 0
+          end_index = array.length - 1
+          root_node = tree.build_tree_iterative(array)
+          expect(root_node.data).to eq(4)
+          tree.pretty_print(root_node)
+        end
+      end
+    end
+
+  end
 end

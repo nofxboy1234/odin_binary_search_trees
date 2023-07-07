@@ -102,4 +102,44 @@ RSpec.describe Node do
       end
     end
   end
+
+  describe '#left=', left: true do
+    context 'when @left is not set and passing left double as argument' do
+      subject(:node) { described_class.new }
+
+      it 'changes @left from nil to left double' do
+        node.left = left
+        expect(node.left).to be(left)
+      end
+    end
+
+    context 'when @left is set to left double and passing right double as argument' do
+      subject(:node) { described_class.new(data: 1, left: left, right: right) }
+
+      it 'changes @left from left double to right double' do
+        node.left = right
+        expect(node.left).to be(right)
+      end
+    end
+  end
+
+  describe '#right=', right: true do
+    context 'when @right is not set and passing right double as argument' do
+      subject(:node) { described_class.new }
+
+      it 'changes @right from nil to right double' do
+        node.right = right
+        expect(node.right).to be(right)
+      end
+    end
+
+    context 'when @right is set to right double and passing left double as argument' do
+      subject(:node) { described_class.new(data: 1, left: left, right: right) }
+
+      it 'changes @right from right double to left double' do
+        node.right = left
+        expect(node.right).to be(left)
+      end
+    end
+  end
 end

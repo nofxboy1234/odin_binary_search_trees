@@ -21,8 +21,16 @@ class Node
     @left
   end
 
+  def left=(value)
+    @left = value
+  end
+
   def right
     @right
+  end
+
+  def right=(value)
+    @right = value
   end
 
   def <=>(other)
