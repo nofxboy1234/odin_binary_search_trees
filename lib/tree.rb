@@ -44,7 +44,7 @@ class Tree
     while queue.length.positive?
       parent, start_index, end_index = queue.shift.flatten
 
-      next unless start_index <= end_index && parent
+      next if (start_index > end_index) && parent
 
       mid_index = (start_index + end_index) / 2
       child = Node.new(data: array[mid_index])
