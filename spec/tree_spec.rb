@@ -61,6 +61,7 @@ RSpec.describe Tree do
 
     describe 'takes an array of data and turns it into a balance BST' do
       context 'when array is [1, 2, 3, 4, 5, 6, 7]' do
+        # https://youtu.be/VCTP81Ij-EM?t=224
         subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
 
         it 'returns the root node (4) of the built balanced BST' do
