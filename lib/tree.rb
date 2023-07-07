@@ -29,32 +29,32 @@ class Tree
 
     left = build_tree_recursive(array, start_index, mid_index - 1)
     right = build_tree_recursive(array, mid_index + 1, end_index)
-    @root = Node.new(data: array[mid_index], left: left, right: right)
+    Node.new(data: array[mid_index], left: left, right: right)
   end
 
-  def build_tree_iterative(nums)
-    return if nums.empty?
+  def build_tree_iterative(array)
+    return if array.empty?
 
-    mid = nums.length / 2
-    root = Node.new(data: nums[mid])
+    mid_index = array.length / 2
+    root = Node.new(data: array[mid_index])
 
-    q = [[root, [0, mid - 1]], [root, [mid + 1, nums.length - 1]]]
+    queue = [[root, [0, mid_index - 1]], [root, [mid_index + 1, array.length - 1]]]
 
-    while q.length.positive?
-      parent, left, right = q.shift.flatten
+    while queue.length.positive?
+      parent, left, right = queue.shift.flatten
 
       if left <= right && parent
-        mid = (left + right) / 2
-        child = Node.new(data: nums[mid])
+        mid_index = (left + right) / 2
+        child = Node.new(data: array[mid_index])
 
-        if nums[mid] < parent.data
+        if array[mid_index] < parent.data
           parent.left = child
         else
           parent.right = child
         end
 
-        q.push([child, [left, mid - 1]])
-        q.push([child, [mid + 1, right]])
+        queue.push([child, [left, mid_index - 1]])
+        queue.push([child, [mid_index + 1, right]])
       end
     end
 
