@@ -42,11 +42,11 @@ class Tree
              [root, [mid_index + 1, array.length - 1]]]
 
     while queue.length.positive?
-      parent, left, right = queue.shift.flatten
+      parent, start_index, end_index = queue.shift.flatten
 
-      next unless left <= right && parent
+      next unless start_index <= end_index && parent
 
-      mid_index = (left + right) / 2
+      mid_index = (start_index + end_index) / 2
       child = Node.new(data: array[mid_index])
 
       if array[mid_index] < parent.data
@@ -55,8 +55,8 @@ class Tree
         parent.right = child
       end
 
-      queue.push([child, [left, mid_index - 1]])
-      queue.push([child, [mid_index + 1, right]])
+      queue.push([child, [start_index, mid_index - 1]])
+      queue.push([child, [mid_index + 1, end_index]])
     end
 
     root
