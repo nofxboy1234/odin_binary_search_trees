@@ -49,7 +49,7 @@ class Tree
       mid_index = (start_index + end_index) / 2
       child = Node.new(data: array[mid_index])
 
-      if array[mid_index] < parent.data
+      if child.data < parent.data
         parent.left = child
       else
         parent.right = child
