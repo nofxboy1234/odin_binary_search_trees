@@ -40,11 +40,11 @@ RSpec.describe Tree do
 
   describe '#build_tree_recursive', build_tree_recursive: true do
     # 1. initialize start_index = 0, end_index = length of array - 1
-    # 2. mid = (start_index + end_index) / 2
-    # 3. create a tree node with mid as root (let's call it A)
+    # 2. mid_index = (start_index + end_index) / 2
+    # 3. create a tree node with mid_index as root (let's call it A)
     # recursively do following steps:
-    # 4. calculate mid of left subarray and make it root of left subtree of A
-    # 5. calculate mid of right subarray and make it root of right subtree of A
+    # 4. calculate mid_index of left subarray and make it root of left subtree of A
+    # 5. calculate mid_index of right subarray and make it root of right subtree of A
 
     # subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7, 8, 9]) }
 
