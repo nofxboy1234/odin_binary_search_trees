@@ -59,13 +59,32 @@ end
 #  / \   \
 # A   C   Z
 
+# root = nil
+# root = insert(root, 'M')
+# root = insert(root, 'B')
+# root = insert(root, 'Q')
+# root = insert(root, 'Z')
+# root = insert(root, 'A')
+# root = insert(root, 'C')
+
+# def array_to_binary(array, root)
+#   for e in array
+#     root = insert(root, e)
+#   end
+#   root
+# end
+
+def array_to_binary(array, root)
+  array.inject(root) do |memo, operand| 
+    puts "memo: #{memo}"
+    puts "operand: #{operand}"
+    insert(memo, operand)
+  end
+end
+
+array = %w[M B Q Z A C]
 root = nil
-root = insert(root, 'M')
-root = insert(root, 'B')
-root = insert(root, 'Q')
-root = insert(root, 'Z')
-root = insert(root, 'A')
-root = insert(root, 'C')
+root = array_to_binary(array, root)
 
 pretty_print(root)
 puts "\n"
