@@ -95,6 +95,19 @@ RSpec.describe Tree do
           tree.pretty_print(root_node)
         end
       end
+
+      context 'when array is ("A".."K").to_a' do
+        subject(:tree) { described_class.new(array: ('A'..'K').to_a) }
+
+        it 'returns the root node ("F") of the built balanced BST' do
+          array = tree.array
+          start_index = 0
+          end_index = array.length - 1
+          root_node = tree.build_tree_recursive(array, start_index, end_index)
+          expect(root_node.data).to eq('F')
+          tree.pretty_print(root_node)
+        end
+      end
     end
   end
 
@@ -116,6 +129,17 @@ RSpec.describe Tree do
           array = tree.array
           root_node = tree.build_tree_iterative(array)
           expect(root_node.data).to eq(4)
+          tree.pretty_print(root_node)
+        end
+      end
+
+      context 'when array is ("A".."K").to_a' do
+        subject(:tree) { described_class.new(array: ('A'..'K').to_a) }
+
+        it 'returns the root node ("F") of the built balanced BST' do
+          array = tree.array
+          root_node = tree.build_tree_iterative(array)
+          expect(root_node.data).to eq('F')
           tree.pretty_print(root_node)
         end
       end
