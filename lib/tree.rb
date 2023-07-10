@@ -13,15 +13,19 @@ class Tree
   end
 
   def root
+    return if @array.nil?
+
     @root ||= build_tree_recursive(array, 0, array.length - 1)
   end
 
   def array
     # @array ||= NilArray.new
     # @array ||= []
+    return if @array.nil?
+
     @array.uniq.sort
   end
-  
+
   # https://youtu.be/VCTP81Ij-EM?t=224
   def build_tree_recursive(array, start_index, end_index)
     return if start_index > end_index
@@ -67,6 +71,24 @@ class Tree
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
+  end
+
+  def level_order
+    return if root.nil?
+
+    queue = []
+    queue.push(root)
+
+    values = []
+    while queue.length.positive?
+      current = queue.shift
+      # puts "#{current.data}"
+      values.push(current.data)
+      queue.push(current.left) if current.left
+      queue.push(current.right) if current.right
+    end
+    
+    values
   end
 end
 
