@@ -21,7 +21,8 @@ class Tree
     # @array ||= []
     @array.uniq.sort
   end
-
+  
+  # https://youtu.be/VCTP81Ij-EM?t=224
   def build_tree_recursive(array, start_index, end_index)
     return if start_index > end_index
 
