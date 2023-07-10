@@ -82,12 +82,11 @@ class Tree
     values = []
     while queue.length.positive?
       current = queue.shift
-      # puts "#{current.data}"
       values.push(current.data)
       queue.push(current.left) if current.left
       queue.push(current.right) if current.right
     end
-    
+
     values
   end
 end
