@@ -4,6 +4,28 @@ require './lib/tree'
 # Breadth-First search: Queue -> Iteration, Stack -> Recursion
 # Depth-First search: Stack -> Recursion
 
+# Balanced: A balanced tree is one where the difference between heights of 
+# left subtree and right subtree of every node is not more than 1.
+# Advantages of Balanced BST
+  # BST is fast in insertion, deletion, searching with a time complexity of O(log n).
+# See: https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-binary-search-tree/
+
+# Valid for Binary Search:
+  # The left child node is always less than the parent node.
+  # The right child node is always greater than or equal to the parent node.
+
+# When Inserting elements of an array left to right,
+  # if the list is sorted, you'll get a Array-like structured BST 
+  # that is always Unbalanced and Valid for Binary Search, but could just be an Array.
+  
+  # if the list is unsorted - depending on the order of the elements,
+  # you can get a Balanced/Unbalanced BST, that is always Valid for Binary Search.
+
+# When using Middle element algorithm,
+  # if the list is sorted, you'll always get a Balanced BST that is Valid for Binary Search
+  
+  # if the list is unsorted, you'll always get a Balanced BST, that is invalid for Binary Search
+
 RSpec.describe Tree do
   subject(:tree) { described_class.new(array: [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]) }
 
@@ -109,11 +131,12 @@ RSpec.describe Tree do
         end
       end
 
-      context 'when array is [10, 7, 14, 20, 1, 5, 8]' do
-        subject(:tree) { described_class.new(array: [10, 7, 14, 20, 1, 5, 8]) }
+      context 'when array is [1, 5, 7, 20, 14, 10, 8]' do
+        subject(:tree) { described_class.new(array: [1, 5, 7, 20, 14, 10, 8]) }
 
         it 'prints the BST' do
           array = tree.array
+          puts "#{array}\n\n"
           start_index = 0
           end_index = array.length - 1
           root_node = tree.build_tree_recursive(array, start_index, end_index)
@@ -121,6 +144,20 @@ RSpec.describe Tree do
           tree.pretty_print(root_node)
         end
       end
+
+      # context 'when array is [1, 5, 7, 20, 14, 10, 8].shuffle' do
+      #   subject(:tree) { described_class.new(array: [1, 5, 7, 20, 14, 10, 8].shuffle) }
+
+      #   it 'prints the BST' do
+      #     array = tree.array
+      #     puts "#{array}\n\n"
+      #     start_index = 0
+      #     end_index = array.length - 1
+      #     root_node = tree.build_tree_recursive(array, start_index, end_index)
+      #     # expect(root_node.data).to eq('F')
+      #     tree.pretty_print(root_node)
+      #   end
+      # end
     end
   end
 

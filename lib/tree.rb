@@ -23,6 +23,7 @@ class Tree
     # @array ||= []
     return if @array.nil?
 
+    @array
     @array.uniq.sort
   end
 

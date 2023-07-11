@@ -107,29 +107,29 @@ level_order(root)
 # puts 'level_order traversal:'
 # level_order(root)
 
-# unbalanced BST
-array = [1, 7, 10, 8, 20, 5, 14]
-root = nil
-root = array_to_binary(array, root)
-pretty_print(root)
-puts "\n"
-puts 'level_order traversal:'
-level_order(root)
+# # unbalanced BST
+# array = [1, 7, 10, 8, 20, 5, 14]
+# root = nil
+# root = array_to_binary(array, root)
+# pretty_print(root)
+# puts "\n"
+# puts 'level_order traversal:'
+# level_order(root)
 
-# unbalanced BST
-array = [14, 8, 10, 7, 20, 5, 1]
-root = nil
-root = array_to_binary(array, root)
-pretty_print(root)
-puts "\n"
-puts 'level_order traversal:'
-level_order(root)
+# # unbalanced BST
+# array = [14, 8, 10, 7, 20, 5, 1]
+# root = nil
+# root = array_to_binary(array, root)
+# pretty_print(root)
+# puts "\n"
+# puts 'level_order traversal:'
+# level_order(root)
 
-# unbalanced BST
-array = [5, 8, 14, 10, 1, 20, 7]
-root = nil
-root = array_to_binary(array, root)
-pretty_print(root)
-puts "\n"
-puts 'level_order traversal:'
-level_order(root)
+# # unbalanced BST
+# array = [5, 8, 14, 10, 1, 20, 7]
+# root = nil
+# root = array_to_binary(array, root)
+# pretty_print(root)
+# puts "\n"
+# puts 'level_order traversal:'
+# level_order(root)
