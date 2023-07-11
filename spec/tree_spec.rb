@@ -28,33 +28,71 @@ require './lib/tree'
 
 RSpec.describe Tree do
   subject(:tree) { described_class.new(array: [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]) }
-
+  
   describe '#root', root: true do
-    let(:root_node) { double('root_node') }
-
+    let(:root_node) { Node.new(data: 0) }
+    
     before do
+      # binding.pry
       allow(tree).to receive(:build_tree_recursive).and_return(root_node)
     end
-
+    
     context 'when array is not nil' do
       it 'returns the root node' do
         expect(tree.root).to be(root_node)
       end
-
+      
       context 'when @root is not set' do
         it 'builds the tree and assigns the root node to @root' do
           expect { tree.root }.to change { tree.instance_variable_get(:@root) }
             .from(nil).to(root_node)
         end
       end
-
+      
       context 'when @root is set' do
+        RSpec::Matchers.define :have_changed do
+          match do |actual|
+            puts "actual.data: #{actual.data}"
+            puts "tree.instance_variable_get(:@root).data: #{tree.instance_variable_get(:@root).data}"
+            actual != tree.instance_variable_get(:@root)
+          end
+          failure_message_when_negated do |actual|
+            # puts "------------FAIL"
+            "Oops! Expected @root not to have changed."
+          end
+        end
+
         before do
           tree.root
         end
 
         it 'does not change the value of @root' do
-          expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
+          # binding.pry
+          # p tree.instance_variable_get(:@root)
+          # tree.root
+          # p tree.instance_variable_get(:@root)
+          # expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
+
+          root = tree.instance_variable_get(:@root).clone
+          puts "root.data before #{root.data}"
+          tree.root
+          puts "root.data after #{tree.instance_variable_get(:@root).data}"
+          expect(root).not_to have_changed
+        end
+
+        it 'does not change the value of @root' do
+          p tree.instance_variable_get(:@root)
+          tree.root
+          p tree.instance_variable_get(:@root)
+        end
+
+        it 'does not change the value of @root' do
+          expect { tree.root }.to change { tree.instance_variable_get(:@root) }
+        end
+
+        it 'changes number' do
+          num = 1
+          expect { num += 1 }.not_to change { num }
         end
       end
     end
