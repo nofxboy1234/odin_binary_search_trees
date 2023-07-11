@@ -56,9 +56,12 @@ RSpec.describe Tree do
             puts "tree.instance_variable_get(:@root).data: #{tree.instance_variable_get(:@root).data}"
             actual != tree.instance_variable_get(:@root)
           end
+          failure_message do |actual|
+            "Oops! Expected @root to have changed, but it did not!"
+          end
           failure_message_when_negated do |actual|
             # puts "------------FAIL"
-            "Oops! Expected @root not to have changed."
+            "Oops! Expected @root not to have changed, but it did!"
           end
         end
 
@@ -78,6 +81,14 @@ RSpec.describe Tree do
           tree.root
           puts "root.data after #{tree.instance_variable_get(:@root).data}"
           expect(root).not_to have_changed
+        end
+
+        it 'changes the value of @root' do
+          root = tree.instance_variable_get(:@root).clone
+          puts "root.data before #{root.data}"
+          # tree.root
+          puts "root.data after #{tree.instance_variable_get(:@root).data}"
+          expect(root).to have_changed
         end
 
         it 'does not change the value of @root' do
