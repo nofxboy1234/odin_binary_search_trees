@@ -133,3 +133,14 @@ level_order(root)
 # puts "\n"
 # puts 'level_order traversal:'
 # level_order(root)
+
+# if the list is unsorted - depending on the order of the elements,
+# you can get a Balanced/Unbalanced BST, that is always Valid for Binary Search.
+# balanced BST - https://www.youtube.com/watch?v=9RHO6jU--GU
+array = %w[F D J B E G K A C I H]
+root = nil
+root = array_to_binary(array, root)
+pretty_print(root)
+puts "\n"
+puts 'level_order traversal:'
+level_order(root)

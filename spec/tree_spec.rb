@@ -131,6 +131,18 @@ RSpec.describe Tree do
         end
       end
 
+      context 'when array is ("A".."K").to_a.shuffle' do
+        subject(:tree) { described_class.new(array: ('A'..'K').to_a.shuffle) }
+
+        it 'prints the BST' do
+          array = tree.array
+          start_index = 0
+          end_index = array.length - 1
+          root_node = tree.build_tree_recursive(array, start_index, end_index)
+          tree.pretty_print(root_node)
+        end
+      end
+
       context 'when array is [1, 5, 7, 20, 14, 10, 8]' do
         subject(:tree) { described_class.new(array: [1, 5, 7, 20, 14, 10, 8]) }
 
