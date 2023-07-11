@@ -52,15 +52,15 @@ RSpec.describe Tree do
       context 'when @root is set' do
         RSpec::Matchers.define :have_changed do
           match do |actual|
-            puts "actual.data: #{actual.data}"
-            puts "tree.instance_variable_get(:@root).data: #{tree.instance_variable_get(:@root).data}"
-            actual != tree.instance_variable_get(:@root)
+            root_before = tree.instance_variable_get(:@root).clone
+            tree.root
+            actual != root_before
+            # actual != tree.instance_variable_get(:@root)
           end
           failure_message do |actual|
             "Oops! Expected @root to have changed, but it did not!"
           end
           failure_message_when_negated do |actual|
-            # puts "------------FAIL"
             "Oops! Expected @root not to have changed, but it did!"
           end
         end
@@ -70,17 +70,7 @@ RSpec.describe Tree do
         end
 
         it 'does not change the value of @root' do
-          # binding.pry
-          # p tree.instance_variable_get(:@root)
-          # tree.root
-          # p tree.instance_variable_get(:@root)
-          # expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
-
-          root = tree.instance_variable_get(:@root).clone
-          puts "root.data before #{root.data}"
-          tree.root
-          puts "root.data after #{tree.instance_variable_get(:@root).data}"
-          expect(root).not_to have_changed
+          expect(tree.root).not_to have_changed
         end
 
         it 'changes the value of @root' do
