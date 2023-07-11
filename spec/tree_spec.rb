@@ -1,6 +1,6 @@
 require './lib/tree'
 
-# Build Balanced BST: Stack -> Recursion, Queue -> Iteration,
+# Build Balanced BST: Stack -> *Recursion, Queue -> *Iteration,
 # Breadth-First search: Queue -> Iteration, Stack -> Recursion
 # Depth-First search: Stack -> Recursion
 
