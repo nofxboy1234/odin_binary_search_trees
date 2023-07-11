@@ -108,6 +108,19 @@ RSpec.describe Tree do
           tree.pretty_print(root_node)
         end
       end
+
+      context 'when array is [10, 7, 14, 20, 1, 5, 8]' do
+        subject(:tree) { described_class.new(array: [10, 7, 14, 20, 1, 5, 8]) }
+
+        it 'prints the BST' do
+          array = tree.array
+          start_index = 0
+          end_index = array.length - 1
+          root_node = tree.build_tree_recursive(array, start_index, end_index)
+          # expect(root_node.data).to eq('F')
+          tree.pretty_print(root_node)
+        end
+      end
     end
   end
 
