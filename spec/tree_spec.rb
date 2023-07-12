@@ -189,14 +189,14 @@ RSpec.describe Tree do
     end
   end
 
-  describe '#level_order', level_order: true do
+  describe '#level_order_iterative', level_order_iterative: true do
     describe 'accepts a block, traverses the tree in breadth-first level order and yields each node to the provided block' do
       context 'when no block is given' do
         context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
           it 'returns [5, 2, 7, 1, 3, 6, 8, 4, 9]' do
             tree.pretty_print(tree.root)
             level_order_array = [5, 2, 7, 1, 3, 6, 8, 4, 9]
-            expect(tree.level_order).to eq(level_order_array)
+            expect(tree.level_order_iterative).to eq(level_order_array)
           end
         end
       end
@@ -212,7 +212,7 @@ RSpec.describe Tree do
               tree.pretty_print(tree.root)
 
               my_proc = Proc.new { |node| "data: #{node.data}" }
-              expect(tree.level_order(&my_proc)).to eq(nil)
+              expect(tree.level_order_iterative(&my_proc)).to eq(nil)
             end
             
             it 'sends #call message to my_proc exactly 9 times' do
@@ -220,7 +220,7 @@ RSpec.describe Tree do
 
               my_proc = Proc.new { |node| "data: #{node.data}" }
               expect(my_proc).to receive(:call).exactly(9).times.and_call_original
-              tree.level_order(&my_proc)
+              tree.level_order_iterative(&my_proc)
             end
           end
         end

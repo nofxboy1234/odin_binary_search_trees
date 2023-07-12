@@ -70,7 +70,7 @@ class Tree
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
 
-  def level_order(&my_block)
+  def level_order_iterative(&my_block)
     return if root.nil?
 
     queue = []
