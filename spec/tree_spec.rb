@@ -68,7 +68,7 @@ RSpec.describe Tree do
 
         it 'changes the value of @root' do
           # binding.pry
-          expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
+          expect { tree.root }.to change { tree.instance_variable_get(:@root) }
           # expect(tree.instance_variable_get(:@root)).to have_changed
         end
 
