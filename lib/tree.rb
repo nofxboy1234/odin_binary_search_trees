@@ -70,7 +70,7 @@ class Tree
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
 
-  def level_order
+  def level_order(&my_block)
     return if root.nil?
 
     queue = []
@@ -81,7 +81,8 @@ class Tree
       current = queue.shift
 
       if block_given?
-        yield(current.data)
+        # yield(current.data)
+        puts my_block.call(current)
       else
         values.push(current.data)
       end

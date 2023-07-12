@@ -203,17 +203,24 @@ RSpec.describe Tree do
 
       context 'when a block is given' do
         context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
-          context 'when block is { "" }' do
+          context 'when block is { |node| "data: #{node.data}" }' do
+            before do
+              allow(tree).to receive(:puts)
+            end
+
             it 'returns nil' do
-              expect(tree.level_order do |data| 
-                "data:#{data}"
-              end).to eq(nil)
+              tree.pretty_print(tree.root)
+
+              my_proc = Proc.new { |node| "data: #{node.data}" }
+              expect(tree.level_order(&my_proc)).to eq(nil)
             end
             
-            it 'returns [5, 2, 7, 1, 3, 6, 8, 4, 9]' do
+            it 'sends #call message to my_proc exactly 9 times' do
               tree.pretty_print(tree.root)
-              level_order_array = [5, 2, 7, 1, 3, 6, 8, 4, 9]
-              expect(tree.level_order).to eq(level_order_array)
+
+              my_proc = Proc.new { |node| "data: #{node.data}" }
+              expect(my_proc).to receive(:call).exactly(9).times.and_call_original
+              tree.level_order(&my_proc)
             end
           end
         end
