@@ -19,11 +19,8 @@ class Tree
   end
 
   def array
-    # @array ||= NilArray.new
-    # @array ||= []
     return if @array.nil?
 
-    @array
     @array.uniq.sort
   end
 
