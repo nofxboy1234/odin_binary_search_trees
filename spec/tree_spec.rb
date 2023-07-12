@@ -200,6 +200,24 @@ RSpec.describe Tree do
           end
         end
       end
+
+      context 'when a block is given' do
+        context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
+          context 'when block is { "" }' do
+            it 'returns nil' do
+              expect(tree.level_order do |data| 
+                "data:#{data}"
+              end).to eq(nil)
+            end
+            
+            it 'returns [5, 2, 7, 1, 3, 6, 8, 4, 9]' do
+              tree.pretty_print(tree.root)
+              level_order_array = [5, 2, 7, 1, 3, 6, 8, 4, 9]
+              expect(tree.level_order).to eq(level_order_array)
+            end
+          end
+        end
+      end
     end
   end
 end

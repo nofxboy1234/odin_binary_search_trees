@@ -79,12 +79,18 @@ class Tree
     values = []
     while queue.length.positive?
       current = queue.shift
-      values.push(current.data)
+
+      if block_given?
+        yield(current.data)
+      else
+        values.push(current.data)
+      end
+      
       queue.push(current.left) if current.left
       queue.push(current.right) if current.right
     end
 
-    values
+    values unless block_given?
   end
 end
 
