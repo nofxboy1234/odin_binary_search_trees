@@ -71,6 +71,49 @@ RSpec.describe Tree do
         expect(tree.root).to eq(nil)
       end
     end
+
+    it 'finds 2 Node instances with the same data value to be equal' do
+      node1 = Node.new(data: 777)
+      node2 = Node.new(data: 777)
+
+      expect(node1).to eq(node2)
+    end
+
+    it 'finds a Node and Double instance with the same data value to be equal' do
+      node1 = Node.new(data: 777)
+      node2 = double('node2', data: 777)
+
+      expect(node1).to eq(node2)
+    end
+
+    it 'checks if a node double has changed' do
+      RSpec::Matchers.define :support_blocks do
+        match do |actual|
+          actual.is_a? Proc
+        end
+
+        supports_block_expectations
+      end
+
+      RSpec::Matchers.define :update do
+        match do |actual|
+          puts "actual: #{actual.call}"
+          puts "block_arg: #{block_arg.call}"
+          true
+        end
+
+        supports_block_expectations
+      end
+
+      node1 = double('node1', data: 777)
+      node2 = double('node2', data: 777)
+
+      # expect(node1).to eq(node2)
+      # expect { node1.data += 1 }.to support_blocks
+      expect { 'hello' }.to update { 'goodbye' }
+      # expect { node1.data += 1 }.to update { node1.data }
+      # expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
+    end
   end
 
   describe '#array', array: true do
