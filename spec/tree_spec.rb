@@ -30,7 +30,8 @@ RSpec.describe Tree do
   subject(:tree) { described_class.new(array: [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]) }
 
   describe '#root', root: true do
-    let(:root_node) { double('root_node') }
+    let(:root_node) { Node.new(data: 777) }
+    let(:test) { double('test') }
 
     before do
       allow(tree).to receive(:build_tree_recursive).and_return(root_node)
@@ -49,13 +50,30 @@ RSpec.describe Tree do
       end
 
       context 'when @root is set' do
+        RSpec::Matchers.define :have_changed do
+          match do |actual|
+            data_before = actual.data
+            tree.root
+            data_after = actual.data
+            puts "data_before: #{data_before}"
+            puts "data_after: #{data_after}"
+            data_before != data_after
+          end
+        end
+
         before do
           tree.root
         end
 
         it 'does not change the value of @root' do
-          expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
+          # expect { tree.root }.to change { tree.instance_variable_get(:@root) }
+          expect(tree.instance_variable_get(:@root)).to have_changed
         end
+
+        # it 'changes' do
+        #   num = 0
+        #   expect { num += 1 }.not_to change { num }
+        # end
       end
     end
 

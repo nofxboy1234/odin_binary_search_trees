@@ -17,6 +17,10 @@ class Node
     @data
   end
 
+  def data=(value)
+    @data = value
+  end
+
   def left
     @left
   end
@@ -34,6 +38,7 @@ class Node
   end
 
   def <=>(other)
+    binding.pry
     data <=> other.data
   end
 end

@@ -4,6 +4,7 @@
 # rubocop:disable Style/TrivialAccessors
 
 require './lib/node'
+require 'pry-byebug'
 
 # Tree represents a Binary Search Tree
 class Tree
@@ -15,7 +16,15 @@ class Tree
   def root
     return if @array.nil?
 
-    @root ||= build_tree_recursive(array, 0, array.length - 1)
+    if @root
+      @root.data = 999
+
+      # @root = Node.new
+      # @root = Node.new(data: 777)
+      # @root = Node.new(data: 999)
+    else
+      @root = build_tree_recursive(array, 0, array.length - 1)
+    end
   end
 
   def array
