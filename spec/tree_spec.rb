@@ -86,7 +86,9 @@ RSpec.describe Tree do
       expect(node1).to eq(node2)
     end
 
-    it 'checks if a node double has changed' do
+    # let(:data_value) { 777 }
+
+    it 'confirms that a node double has changed' do
       RSpec::Matchers.define :support_blocks do
         match do |actual|
           actual.is_a? Proc
@@ -97,20 +99,23 @@ RSpec.describe Tree do
 
       RSpec::Matchers.define :update do
         match do |actual|
-          puts "actual: #{actual.call}"
-          puts "block_arg: #{block_arg.call}"
+          puts "actual: #{actual.call.data}"
+          puts "block_arg: #{block_arg.call.data}"
           true
         end
 
         supports_block_expectations
       end
 
-      node1 = double('node1', data: 777)
-      node2 = double('node2', data: 777)
+      data_value = 777
+      node1 = double('node1', data: data_value)
+      node2 = double('node2', data: data_value)
 
       # expect(node1).to eq(node2)
       # expect { node1.data += 1 }.to support_blocks
-      expect { 'hello' }.to update { 'goodbye' }
+      # expect { node1.data = 1 }.to update { node1 }
+      expect { node1 }.to update { node2 }
+      # expect { 'hello' }.to update { 'goodbye' }
       # expect { node1.data += 1 }.to update { node1.data }
       # expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
     end
