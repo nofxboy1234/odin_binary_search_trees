@@ -38,7 +38,7 @@ class Node
   end
 
   def <=>(other)
-    binding.pry
+    # binding.pry
     data <=> other.data
   end
 end

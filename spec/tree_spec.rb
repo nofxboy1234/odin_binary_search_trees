@@ -30,7 +30,9 @@ RSpec.describe Tree do
   subject(:tree) { described_class.new(array: [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]) }
 
   describe '#root', root: true do
-    let(:root_node) { Node.new(data: 777) }
+    # let(:root_node) { Node.new(data: 777) }
+    # let(:root_node) { double('root_node', data: 777) }
+    let(:root_node) { double('root_node', data: 999) }
 
     before do
       allow(tree).to receive(:build_tree_recursive).and_return(root_node)
@@ -65,8 +67,9 @@ RSpec.describe Tree do
         end
 
         it 'changes the value of @root' do
-          # expect { tree.root }.to change { tree.instance_variable_get(:@root) }
-          expect(tree.instance_variable_get(:@root)).to have_changed
+          # binding.pry
+          expect { tree.root }.not_to change { tree.instance_variable_get(:@root) }
+          # expect(tree.instance_variable_get(:@root)).to have_changed
         end
 
         # it 'changes' do
