@@ -17,12 +17,12 @@ class Tree
     return if @array.nil?
 
     if @root
-      # @root.data = 999
+      @root.data = 999
 
       # @root = Node.new
       # binding.pry
-      old_root = @root.clone
-      @root = Node.new(data: 777)
+      # old_root = @root.clone
+      # @root = Node.new(data: 777)
       # @root
       # @root = Node.new(data: 999)
     else
