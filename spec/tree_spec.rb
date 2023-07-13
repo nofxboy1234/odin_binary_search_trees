@@ -2,7 +2,7 @@ require './lib/tree'
 require 'pry-byebug'
 
 # Build Balanced BST: Stack -> *Recursion, Queue -> *Iteration,
-# Breadth-First search: Queue -> Iteration, Stack -> Recursion
+# Breadth-First search: Queue -> *Iteration, Stack -> Recursion
 # Depth-First search: Stack -> Recursion
 
 # Balanced: A balanced tree is one where the difference between heights of 
@@ -32,9 +32,10 @@ RSpec.describe Tree do
 
   describe '#root', root: true do
     let(:root_node) { double('root_node') }
+    let(:root_node2) { double('root_node2') }
 
     before do
-      allow(tree).to receive(:build_tree_recursive).and_return(root_node)
+      allow(tree).to receive(:build_tree_recursive).and_return(root_node, root_node2)
     end
 
     context 'when array is not nil' do
@@ -60,6 +61,10 @@ RSpec.describe Tree do
 
         it 'does not send #build_tree_recursive to tree' do
           expect(tree).not_to receive(:build_tree_recursive)
+        end
+
+        it 'returns the root node' do
+          expect(tree.root).to be(root_node)
         end
       end
     end
