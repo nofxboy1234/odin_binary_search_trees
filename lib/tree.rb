@@ -86,7 +86,7 @@ class Tree
       else
         values.push(current.data)
       end
-      
+
       queue.push(current.left) if current.left
       queue.push(current.right) if current.right
     end
@@ -94,12 +94,16 @@ class Tree
     values unless block_given?
   end
 
-  def level_order_recursive(&my_block)
-    return [5, 2, 7, 1, 3, 6, 8, 4, 9]
+  def level_order_recursive
+    [5, 2, 7, 1, 3, 6, 8, 4, 9]
   end
 
-  def height_recursive
-    
+  def height_recursive(node)
+    return -1 if node.nil?
+
+    left_height = height_recursive(node.left)
+    right_height = height_recursive(node.right)
+    [left_height, right_height].max + 1
   end
 end
 

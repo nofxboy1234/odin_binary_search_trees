@@ -274,10 +274,10 @@ RSpec.describe Tree do
 
   describe '#height_recursive', height_recursive: true do
     context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
-      it 'returns 3' do
+      it 'returns 3 for height of root_node' do
         root_node = tree.root
         tree.pretty_print(root_node)
-        expect(tree.height_recursive).to eq(3)
+        expect(tree.height_recursive(root_node)).to eq(3)
       end
     end
   end
