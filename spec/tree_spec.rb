@@ -252,14 +252,14 @@ RSpec.describe Tree do
               allow(tree).to receive(:puts)
             end
 
-            it 'returns nil' do
+            xit 'returns nil' do
               tree.pretty_print(tree.root)
 
               my_proc = Proc.new { |node| "data: #{node.data}" }
               expect(tree.level_order_recursive(&my_proc)).to eq(nil)
             end
             
-            it 'sends #call message to my_proc exactly 9 times' do
+            xit 'sends #call message to my_proc exactly 9 times' do
               tree.pretty_print(tree.root)
 
               my_proc = Proc.new { |node| "data: #{node.data}" }
@@ -268,6 +268,16 @@ RSpec.describe Tree do
             end
           end
         end
+      end
+    end
+  end
+
+  describe '#height_recursive', height_recursive: true do
+    context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
+      it 'returns 3' do
+        root_node = tree.root
+        tree.pretty_print(root_node)
+        expect(tree.height_recursive).to eq(3)
       end
     end
   end

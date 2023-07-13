@@ -97,6 +97,10 @@ class Tree
   def level_order_recursive(&my_block)
     return [5, 2, 7, 1, 3, 6, 8, 4, 9]
   end
+
+  def height_recursive
+    
+  end
 end
 
 # rubocop:enable Lint/RedundantCopDisableDirective
