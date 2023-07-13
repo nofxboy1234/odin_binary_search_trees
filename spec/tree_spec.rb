@@ -232,4 +232,43 @@ RSpec.describe Tree do
       end
     end
   end
+
+  describe '#level_order_recursive', level_order_recursive: true do
+    describe 'accepts a block, traverses the tree in breadth-first level order and yields each node to the provided block' do
+      context 'when no block is given' do
+        context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
+          it 'returns [5, 2, 7, 1, 3, 6, 8, 4, 9]' do
+            tree.pretty_print(tree.root)
+            level_order_array = [5, 2, 7, 1, 3, 6, 8, 4, 9]
+            expect(tree.level_order_recursive).to eq(level_order_array)
+          end
+        end
+      end
+
+      context 'when a block is given' do
+        context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
+          context 'when block is { |node| "data: #{node.data}" }' do
+            before do
+              allow(tree).to receive(:puts)
+            end
+
+            it 'returns nil' do
+              tree.pretty_print(tree.root)
+
+              my_proc = Proc.new { |node| "data: #{node.data}" }
+              expect(tree.level_order_recursive(&my_proc)).to eq(nil)
+            end
+            
+            it 'sends #call message to my_proc exactly 9 times' do
+              tree.pretty_print(tree.root)
+
+              my_proc = Proc.new { |node| "data: #{node.data}" }
+              expect(my_proc).to receive(:call).exactly(9).times.and_call_original
+              tree.level_order_recursive(&my_proc)
+            end
+          end
+        end
+      end
+    end
+  end
 end
