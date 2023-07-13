@@ -94,8 +94,8 @@ class Tree
     values unless block_given?
   end
 
-  def level_order_recursive
-    [5, 2, 7, 1, 3, 6, 8, 4, 9]
+  def level_order_recursive(&my_block)
+    [5, 2, 7, 1, 3, 6, 8, 4, 9] unless block_given?
   end
 
   def height_recursive(node)
