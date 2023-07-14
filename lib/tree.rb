@@ -81,7 +81,6 @@ class Tree
       current = queue.shift
 
       if block_given?
-        # yield(current.data)
         puts my_block.call(current)
       else
         values.push(current.data)

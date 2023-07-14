@@ -209,6 +209,8 @@ RSpec.describe Tree do
       context 'when a block is given' do
         context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
           context 'when block is { |node| "data: #{node.data}" }' do
+            let(:my_proc) { my_proc = Proc.new { |node| "data: #{node.data}" } }
+
             before do
               allow(tree).to receive(:puts)
             end
@@ -216,14 +218,12 @@ RSpec.describe Tree do
             it 'returns nil' do
               tree.pretty_print(tree.root)
 
-              my_proc = Proc.new { |node| "data: #{node.data}" }
               expect(tree.level_order_iterative(&my_proc)).to eq(nil)
             end
             
             it 'sends #call message to my_proc exactly 9 times' do
               tree.pretty_print(tree.root)
 
-              my_proc = Proc.new { |node| "data: #{node.data}" }
               expect(my_proc).to receive(:call).exactly(9).times.and_call_original
               tree.level_order_iterative(&my_proc)
             end
@@ -248,6 +248,8 @@ RSpec.describe Tree do
       context 'when a block is given' do
         context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
           context 'when block is { |node| "data: #{node.data}" }' do
+            let(:my_proc) { my_proc = Proc.new { |node| "data: #{node.data}" } }
+
             before do
               allow(tree).to receive(:puts)
             end
@@ -255,14 +257,12 @@ RSpec.describe Tree do
             it 'returns nil' do
               tree.pretty_print(tree.root)
 
-              my_proc = Proc.new { |node| "data: #{node.data}" }
               expect(tree.level_order_recursive(&my_proc)).to eq(nil)
             end
             
             it 'sends #call message to my_proc exactly 9 times' do
               tree.pretty_print(tree.root)
 
-              my_proc = Proc.new { |node| p "------data: #{node.data}" }
               expect(my_proc).to receive(:call).exactly(9).times.and_call_original
               tree.level_order_recursive(&my_proc)
             end
