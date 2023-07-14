@@ -98,7 +98,14 @@ class Tree
     levels = (0..height_recursive(root)).map do |level|
       nodes_on_level(root, level)
     end
+
     levels.flatten.map { |node| node.data } unless block_given?
+    if block_given?
+      levels.flatten.each { |node| my_block.call(node)}
+      nil
+    else
+      levels.flatten.map { |node| node.data }
+    end
   end
 
   def height_recursive(node)
