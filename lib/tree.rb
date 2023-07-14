@@ -101,8 +101,8 @@ class Tree
       print_level(root, level, &my_block)
     end
 
-    # [5, 2, 7, 1, 3, 6, 8, 4, 9] unless block_given?
-    nil
+    [5, 2, 7, 1, 3, 6, 8, 4, 9] unless block_given?
+    # nil
   end
 
   def height_recursive(node)
