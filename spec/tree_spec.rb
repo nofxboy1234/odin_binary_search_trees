@@ -252,7 +252,7 @@ RSpec.describe Tree do
               allow(tree).to receive(:puts)
             end
 
-            xit 'returns nil' do
+            it 'returns nil' do
               tree.pretty_print(tree.root)
 
               my_proc = Proc.new { |node| "data: #{node.data}" }
