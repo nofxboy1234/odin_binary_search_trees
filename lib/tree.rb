@@ -95,11 +95,14 @@ class Tree
   end
 
   def level_order_recursive(&my_block)
+    # my_block.call(root)
+
     (0..height_recursive(root)).each do |level|
-      print_level(root, level)
+      print_level(root, level, &my_block)
     end
 
-    [5, 2, 7, 1, 3, 6, 8, 4, 9] unless block_given?
+    # [5, 2, 7, 1, 3, 6, 8, 4, 9] unless block_given?
+    nil
   end
 
   def height_recursive(node)
@@ -112,14 +115,15 @@ class Tree
 
   private
 
-  def print_level(node, level)
+  def print_level(node, level, &my_block)
     return if node.nil?
 
     if level.zero?
-      p node.data
+      # p node.data
+      my_block.call(node)
     elsif level.positive?
-      print_level(node.left, level - 1)
-      print_level(node.right, level - 1)
+      print_level(node.left, level - 1, &my_block)
+      print_level(node.right, level - 1, &my_block)
     end
   end
 end

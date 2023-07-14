@@ -262,7 +262,7 @@ RSpec.describe Tree do
             it 'sends #call message to my_proc exactly 9 times' do
               tree.pretty_print(tree.root)
 
-              my_proc = Proc.new { |node| "data: #{node.data}" }
+              my_proc = Proc.new { |node| p "------data: #{node.data}" }
               expect(my_proc).to receive(:call).exactly(9).times.and_call_original
               tree.level_order_recursive(&my_proc)
             end
