@@ -96,12 +96,9 @@ class Tree
 
   def level_order_recursive(&my_block)
     levels = (0..height_recursive(root)).map do |level|
-      print_level(root, level)
+      nodes_on_level(root, level)
     end
-    binding.pry
-    # [5, 2, 7, 1, 3, 6, 8, 4, 9] unless block_given?
     levels.flatten.map { |node| node.data } unless block_given?
-    # nil
   end
 
   def height_recursive(node)
@@ -114,14 +111,14 @@ class Tree
 
   private
 
-  def print_level(node, level, nodes = [])
+  def nodes_on_level(node, level, nodes = [])
     return nodes if node.nil?
 
     if level.zero?
       nodes.push(node)
     elsif level.positive?
-      print_level(node.left, level - 1, nodes)
-      print_level(node.right, level - 1, nodes)
+      nodes_on_level(node.left, level - 1, nodes)
+      nodes_on_level(node.right, level - 1, nodes)
     end
   end
 end
