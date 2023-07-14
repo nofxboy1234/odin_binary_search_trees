@@ -2,8 +2,8 @@ require './lib/tree'
 require 'pry-byebug'
 
 # Build Balanced BST: Stack -> *Recursion, Queue -> *Iteration,
-# Breadth-First search: Queue -> *Iteration, Stack -> Recursion
-# Depth-First search: Stack -> Recursion
+# Breadth-First search: Queue -> *Iteration, Stack -> *Recursion
+# Depth-First search: Stack -> *Recursion
 
 # Balanced: A balanced tree is one where the difference between heights of 
 # left subtree and right subtree of every node is not more than 1.
@@ -278,6 +278,14 @@ RSpec.describe Tree do
         root_node = tree.root
         tree.pretty_print(root_node)
         expect(tree.height_recursive(root_node)).to eq(3)
+      end
+    end
+  end
+
+  describe '#preorder' do
+    context 'when block is given' do
+      it 'yields each node to the block' do
+
       end
     end
   end
