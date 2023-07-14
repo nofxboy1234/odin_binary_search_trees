@@ -209,7 +209,7 @@ RSpec.describe Tree do
       context 'when a block is given' do
         context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
           context 'when block is { |node| "data: #{node.data}" }' do
-            let(:my_proc) { my_proc = Proc.new { |node| "data: #{node.data}" } }
+            let(:my_proc) { my_proc = Proc.new { |node| p "data: #{node.data}" } }
 
             before do
               allow(tree).to receive(:puts)
@@ -248,7 +248,7 @@ RSpec.describe Tree do
       context 'when a block is given' do
         context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
           context 'when block is { |node| "data: #{node.data}" }' do
-            let(:my_proc) { my_proc = Proc.new { |node| "data: #{node.data}" } }
+            let(:my_proc) { my_proc = Proc.new { |node| p "data: #{node.data}" } }
 
             before do
               allow(tree).to receive(:puts)
