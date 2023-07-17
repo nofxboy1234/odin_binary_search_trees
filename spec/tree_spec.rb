@@ -284,9 +284,17 @@ RSpec.describe Tree do
   end
 
   describe '#insert_recursive', insert_recursive: true do
-    it 'inserts a new leaf node' do
-      expect { tree.insert(10) }.to change { tree.level_order_recursive }
-        .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4, 9, 10])
+    context 'when value does not exist in the tree' do
+      it 'inserts a new leaf node' do
+        expect { tree.insert(10) }.to change { tree.level_order_recursive }
+          .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4, 9, 10])
+      end
+    end
+
+    context 'when value exists in the tree' do
+      it 'does not change the tree' do
+        expect { tree.insert(9) }.not_to change { tree.level_order_recursive }
+      end
     end
   end
 
