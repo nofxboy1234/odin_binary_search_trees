@@ -119,6 +119,8 @@ class Tree
     insert_recursive(root, value)
   end
 
+  private
+
   def insert_recursive(root, value)
     return Node.new(data: value) if root.nil?
 
@@ -130,8 +132,6 @@ class Tree
 
     root
   end
-
-  private
 
   def nodes_on_level(node, level, nodes = [])
     # return nodes if node.nil?
