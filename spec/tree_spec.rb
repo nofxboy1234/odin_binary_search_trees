@@ -1,5 +1,6 @@
 require './lib/tree'
 require 'pry-byebug'
+require './lib/byebug_syntax_highlighting'
 
 # Build Balanced BST: Stack -> *Recursion, Queue -> *Iteration,
 # Breadth-First search: Queue -> *Iteration, Stack -> *Recursion
@@ -279,6 +280,17 @@ RSpec.describe Tree do
         tree.pretty_print(root_node)
         expect(tree.height_recursive(root_node)).to eq(3)
       end
+    end
+  end
+
+  describe '#insert_recursive', insert_recursive: true do
+    it 'inserts a new leaf node' do
+      # root = tree.insert(10)
+      # byebug
+      # puts 'end'
+
+      expect { tree.insert(10) }.to change { tree.level_order_recursive }
+        .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4, 9, 10])
     end
   end
 

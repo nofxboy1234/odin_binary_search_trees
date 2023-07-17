@@ -115,6 +115,22 @@ class Tree
     [left_height, right_height].max + 1
   end
 
+  def insert(value)
+    insert_recursive(root, value)
+  end
+
+  def insert_recursive(root, value)
+    return Node.new(data: value) if root.nil?
+
+    if value < root.data
+      root.left = insert_recursive(root.left, value)
+    elsif value > root.data
+      root.right = insert_recursive(root.right, value)
+    end
+
+    root
+  end
+
   private
 
   def nodes_on_level(node, level, nodes = [])
