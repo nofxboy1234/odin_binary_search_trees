@@ -128,8 +128,9 @@ class Tree
   private
 
   def find_recursive(root, value)
-    return if root.nil?
-    return root if root.data == value
+    # return if root.nil?
+    # return root if root.data == value
+    return root if root.nil? || root.data == value
 
     if value < root.data
       find_recursive(root.left, value)
