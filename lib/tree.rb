@@ -137,11 +137,14 @@ class Tree
       if root.leaf?
         # Set the parent's left or right to be nil
         return nil
+      # check if root has 1 child
+      elsif root.has_one_child?
+        # Set the parent's left or right to be the only child
+        return root.left || root.right
       end
+      # check if root has 2 children
     end
 
-    # check if root has 1 child
-    # check if root has 2 children
 
     if value < root.data
       root.left = delete_recursive(root.left, value)

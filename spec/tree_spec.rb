@@ -337,10 +337,20 @@ RSpec.describe Tree do
         end
       end
 
-      context 'when the node has 1 child' do
-        xit 'replaces the node with its child (point its parent to its child - bypass)' do
+      context 'when the node has 1 child (deleting node(8))' do
+        it 'replaces the node with its child (point its parent to its child - bypass)' do
           expect { tree.delete(8) }.to change { tree.level_order_recursive }
-          .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4])
+          .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 9, 4])
+        end
+
+        it 'returns nil when trying to find the deleted value' do
+          tree.delete(8)
+          expect(tree.find(8)).to eq(nil)
+        end
+
+        it 'sets the right value of node(7) to node(9)' do
+          tree.delete(8)
+          expect(tree.find(7).right).to eq(Node.new(data: 9))
         end
       end
 

@@ -40,6 +40,10 @@ class Node
   def leaf?
     left.nil? && right.nil?
   end
+
+  def has_one_child?
+    (left.nil? && right) || (left && right.nil?)
+  end
 end
 
 # rubocop:enable Lint/RedundantCopDisableDirective
