@@ -312,7 +312,7 @@ RSpec.describe Tree do
     end
   end
 
-  describe '#delete' do
+  describe '#delete', delete: true do
     context 'when a node with the given value does not exist' do
       xit 'does not change the tree' do
         
@@ -321,8 +321,9 @@ RSpec.describe Tree do
 
     context 'when a node with the given value exists' do
       context 'when the node is a leaf node' do
-        xit 'deletes a node with the given value' do
-          
+        it 'deletes a node with the given value' do
+          expect { tree.delete(9) }.to change { tree.level_order_recursive }
+            .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4])
         end
       end
 

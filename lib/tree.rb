@@ -91,14 +91,20 @@ class Tree
     end
 
     values unless block_given?
+
   end
 
   def level_order_recursive(&my_block)
     nodes = (0..height_recursive(root)).map do |level|
       nodes_on_level(root, level)
     end
+    # byebug
 
-    p "nodes #{nodes.flatten.map { |node| node.data }}"
+    # p "nodes #{nodes.flatten.map { |node| node.data }}"
+    # p "nodes #{nodes.flatten.map do |node|
+    #   node.data
+    # end}"
+
     if block_given?
       nodes.flatten.each { |node| my_block.call(node) }
       nil
@@ -123,9 +129,35 @@ class Tree
     find_recursive(root, value)
   end
 
-  def delete(value); end
+  def delete(value)
+    delete_recursive(root, value)
+    # byebug
+    puts 'end of #delete'
+  end
 
   private
+
+  def delete_recursive(root, value)
+    # return nil if root.nil?
+
+    # check if root is a leaf node
+    if root.data == value && root.leaf?
+      # Set the parent's left or right to be nil
+      # return Node.new(data: nil)
+      return nil
+    end
+
+    # check if root has 1 child
+    # check if root has 2 children
+
+    if value < root.data
+      root.left = delete_recursive(root.left, value)
+    elsif value > root.data
+      root.right = delete_recursive(root.right, value)
+    end
+
+    root
+  end
 
   def find_recursive(root, value)
     return root if root.nil? || root.data == value
@@ -150,16 +182,16 @@ class Tree
   end
 
   def nodes_on_level(node, level, nodes = [])
-    # return nodes if node.nil?
     return if node.nil?
 
     if level.zero?
       nodes.push(node)
-      # nodes
     elsif level.positive?
       nodes_on_level(node.left, level - 1, nodes)
       nodes_on_level(node.right, level - 1, nodes)
     end
+
+    nodes
   end
 end
 
