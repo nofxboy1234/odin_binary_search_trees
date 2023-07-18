@@ -354,11 +354,12 @@ RSpec.describe Tree do
         end
       end
 
-      context 'when the node has 2 children' do
+      context 'when the node has 2 children (deleting node(2))' do
         # Be consistent about which subtree (left or right), is used when deleting.
         # The first node found that has no left subtree, is the smallest node in its subtree
-        xit 'replaces the node with the smallest node in its right subtree' do
-          
+        it 'replaces the node with the smallest node in its right subtree' do
+          expect { tree.delete(2) }.to change { tree.level_order_recursive }
+          .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 3, 7, 1, 4, 6, 8, 9])
         end
 
         # The first node found that has no right subtree, is the largest node in its subtree

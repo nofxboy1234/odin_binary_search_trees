@@ -141,6 +141,8 @@ class Tree
       elsif root.has_one_child?
         # Set the parent's left or right to be the only child
         return root.left || root.right
+      elsif root.has_two_children?
+        
       end
       # check if root has 2 children
     end
