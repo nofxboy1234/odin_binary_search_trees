@@ -138,7 +138,7 @@ class Tree
   private
 
   def delete_recursive(root, value)
-    # return nil if root.nil?
+    return nil if root.nil?
 
     # check if root is a leaf node
     if root.data == value && root.leaf?

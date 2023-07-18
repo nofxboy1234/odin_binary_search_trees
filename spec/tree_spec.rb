@@ -314,8 +314,8 @@ RSpec.describe Tree do
 
   describe '#delete', delete: true do
     context 'when a node with the given value does not exist' do
-      xit 'does not change the tree' do
-        
+      it 'does not change the tree' do
+        expect { tree.delete(100) }.not_to change { tree.level_order_recursive }
       end
     end
 
