@@ -73,8 +73,8 @@ RSpec.describe Tree do
     context 'when array is nil' do
       subject(:tree) { described_class.new }
 
-      it 'returns nil' do
-        expect(tree.root).to eq(nil)
+      it 'returns the root node' do
+        expect(tree.root).to be(root_node)
       end
     end
   end
@@ -83,8 +83,8 @@ RSpec.describe Tree do
     context 'when array is nil' do
       subject(:tree) { described_class.new }
 
-      it 'returns nil' do
-        expect(tree.array).to eq(nil)
+      it 'returns []' do
+        expect(tree.array).to eq([])
       end
     end
 
@@ -284,16 +284,27 @@ RSpec.describe Tree do
   end
 
   describe '#insert', insert: true do
-    context 'when value does not exist in the tree' do
-      it 'inserts a new leaf node' do
-        expect { tree.insert(10) }.to change { tree.level_order_recursive }
-          .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4, 9, 10])
+    context 'when the tree is not empty' do
+      context 'when value does not exist in the tree' do
+        it 'inserts a new leaf node' do
+          expect { tree.insert(10) }.to change { tree.level_order_recursive }
+            .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4, 9, 10])
+        end
+      end
+  
+      context 'when value exists in the tree' do
+        it 'does not change the tree' do
+          expect { tree.insert(9) }.not_to change { tree.level_order_recursive }
+        end
       end
     end
 
-    context 'when value exists in the tree' do
-      it 'does not change the tree' do
-        expect { tree.insert(9) }.not_to change { tree.level_order_recursive }
+    context 'when the tree is empty' do
+      subject(:tree) { described_class.new }
+
+      it 'inserts a new leaf node' do
+        expect { tree.insert('F') }.to change { tree.level_order_recursive }
+          .from([]).to(['F'])
       end
     end
   end

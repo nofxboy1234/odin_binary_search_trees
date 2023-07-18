@@ -13,13 +13,13 @@ class Tree
   end
 
   def root
-    return if @array.nil?
+    # return if @array.nil?
 
     @root ||= build_tree_recursive(array, 0, array.length - 1)
   end
 
   def array
-    return if @array.nil?
+    return [] if @array.nil?
 
     @array.uniq.sort
   end
@@ -116,7 +116,7 @@ class Tree
   end
 
   def insert(value)
-    insert_recursive(root, value)
+    @root = insert_recursive(root, value)
   end
 
   def find(value)
