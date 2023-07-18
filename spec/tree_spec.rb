@@ -362,10 +362,19 @@ RSpec.describe Tree do
           .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 3, 7, 1, 4, 6, 8, 9])
         end
 
-        # The first node found that has no right subtree, is the largest node in its subtree
-        xit 'replaces the node with the largest node in its left subtree' do
-          
+        it 'returns nil when trying to find the deleted value' do
+          tree.delete(2)
+          expect(tree.find(2)).to eq(nil)
         end
+
+        it 'sets the left value of node(5) to node(3)' do
+          tree.delete(2)
+          expect(tree.find(5).left).to eq(Node.new(data: 3))
+        end
+        # The first node found that has no right subtree, is the largest node in its subtree
+        # xit 'replaces the node with the largest node in its left subtree' do
+          
+        # end
       end
     end
   end

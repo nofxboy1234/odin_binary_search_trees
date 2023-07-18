@@ -142,11 +142,13 @@ class Tree
         # Set the parent's left or right to be the only child
         return root.left || root.right
       elsif root.has_two_children?
-        
+        min_child = min_of_right_subtree_recursive(root.right)
+        # Set the min child's left to be the current left node
+        min_child.left = root.left
+        # Set the parent's left or right to be the child with min value
+        return min_child
       end
-      # check if root has 2 children
     end
-
 
     if value < root.data
       root.left = delete_recursive(root.left, value)
@@ -155,6 +157,14 @@ class Tree
     end
 
     root
+  end
+
+  def min_of_right_subtree_recursive(root)
+    if root.left.nil?
+      return root
+    else
+      min_of_right_subtree_recursive(root.left)
+    end
   end
 
   def find_recursive(root, value)
