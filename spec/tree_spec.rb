@@ -320,16 +320,27 @@ RSpec.describe Tree do
     end
 
     context 'when a node with the given value exists' do
-      context 'when the node is a leaf node' do
+      context 'when the node is a leaf node - 9' do
         it 'deletes a node with the given value' do
           expect { tree.delete(9) }.to change { tree.level_order_recursive }
             .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4])
+          end
+          
+          it 'returns nil when trying to find the deleted value' do
+            tree.delete(9)
+            expect(tree.find(9)).to eq(nil)
+          end
+          
+          it 'sets the right value of node(8) to nil' do
+            tree.delete(9)
+            expect(tree.find(8).right).to eq(nil)
+          end
         end
-      end
 
       context 'when the node has 1 child' do
-        xit 'replaces the node with its child (point its parent to its child)' do
-          
+        xit 'replaces the node with its child (point its parent to its child - bypass)' do
+          expect { tree.delete(8) }.to change { tree.level_order_recursive }
+          .from([5, 2, 7, 1, 3, 6, 8, 4, 9]).to([5, 2, 7, 1, 3, 6, 8, 4])
         end
       end
 
