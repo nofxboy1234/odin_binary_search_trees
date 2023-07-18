@@ -299,8 +299,16 @@ RSpec.describe Tree do
   end
 
   describe '#find', find: true do
-    it 'returns the node with the given value' do
-      expect(tree.find(9)).to eq(Node.new(data: 9))
+    context 'when a node with the value is in the tree' do
+      it 'returns the node with the given value' do
+        expect(tree.find(9)).to eq(Node.new(data: 9))
+      end
+    end
+
+    context 'when a node with the value is not in the tree' do
+      it 'returns nil' do
+        expect(tree.find(100)).to eq(nil)
+      end
     end
   end
 

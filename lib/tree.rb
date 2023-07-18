@@ -123,14 +123,19 @@ class Tree
     find_recursive(root, value)
   end
 
-  def delete(value)
-
-  end
+  def delete(value); end
 
   private
 
   def find_recursive(root, value)
-    
+    return if root.nil?
+    return root if root.data == value
+
+    if value < root.data
+      find_recursive(root.left, value)
+    elsif value > root.data
+      find_recursive(root.right, value)
+    end
   end
 
   def insert_recursive(root, value)
