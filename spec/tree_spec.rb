@@ -390,11 +390,38 @@ RSpec.describe Tree do
     end
   end
 
-  # describe '#preorder' do
-  #   context 'when block is given' do
-  #     it 'yields each node to the block' do
+  describe '#preorder', preorder: true do
+    describe 'accepts a block, traverses the tree in breadth-first level order and yields each node to the provided block' do
+      context 'when level_order_recursive is %w[F D J B E G K A C I]' do
+        subject(:tree) { described_class.new }
+  
+        before do
+          %w[F D J B E G K A C I].each { |value| tree.insert(value) }
+          tree.pretty_print(tree.root)
+        end
 
-  #     end
-  #   end
-  # end
+        context 'when no block is given' do
+            it 'returns %w[F D B A C E J G I K]' do
+              expect(tree.preorder).to eq(%w[F D B A C E J G I K])
+            end
+        end
+
+        context 'when a block is given' do
+          context 'when block is { |node| "data: #{node.data}" }' do
+            let(:my_proc) { my_proc = Proc.new { |node| p "data: #{node.data}" } }
+  
+            it 'returns nil' do
+              allow(my_proc).to receive(:call)
+              expect(tree.preorder(&my_proc)).to eq(nil)
+            end
+            
+            it 'sends #call message to my_proc exactly 10 times' do
+              expect(my_proc).to receive(:call).exactly(10).times.and_call_original
+              tree.preorder(&my_proc)
+            end
+          end
+        end
+      end
+    end
+  end
 end

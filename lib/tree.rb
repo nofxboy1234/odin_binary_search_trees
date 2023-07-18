@@ -91,7 +91,6 @@ class Tree
     end
 
     values unless block_given?
-
   end
 
   def level_order_recursive(&my_block)
@@ -127,7 +126,26 @@ class Tree
     delete_recursive(root, value)
   end
 
+  def preorder(&my_block)
+    preorder_recursive(root, &my_block)
+  end
+
   private
+
+  def preorder_recursive(root, values = [], &my_block)
+    return if root.nil?
+
+    if block_given?
+      my_block.call(root)
+    else
+      values.push(root.data)
+    end
+
+    preorder_recursive(root.left, values, &my_block)
+    preorder_recursive(root.right, values, &my_block)
+
+    values unless block_given?
+  end
 
   def delete_recursive(root, value)
     return nil if root.nil?
