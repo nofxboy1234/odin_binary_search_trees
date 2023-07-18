@@ -283,7 +283,7 @@ RSpec.describe Tree do
     end
   end
 
-  describe '#insert_recursive', insert_recursive: true do
+  describe '#insert', insert: true do
     context 'when value does not exist in the tree' do
       it 'inserts a new leaf node' do
         expect { tree.insert(10) }.to change { tree.level_order_recursive }
@@ -298,11 +298,52 @@ RSpec.describe Tree do
     end
   end
 
-  describe '#preorder' do
-    context 'when block is given' do
-      it 'yields each node to the block' do
+  describe '#find', find: true do
+    it 'returns the node with the given value' do
+      expect(tree.find(9)).to eq(Node.new(data: 9))
+    end
+  end
 
+  describe '#delete' do
+    context 'when a node with the given value does not exist' do
+      xit 'does not change the tree' do
+        
+      end
+    end
+
+    context 'when a node with the given value exists' do
+      context 'when the node is a leaf node' do
+        xit 'deletes a node with the given value' do
+          
+        end
+      end
+
+      context 'when the node has 1 child' do
+        xit 'replaces the node with its child (point its parent to its child)' do
+          
+        end
+      end
+
+      context 'when the node has 2 children' do
+        # Be consistent about which subtree (left or right), is used when deleting.
+        # The first node found that has no left subtree, is the smallest node in its subtree
+        xit 'replaces the node with the smallest node in its right subtree' do
+          
+        end
+
+        # The first node found that has no right subtree, is the largest node in its subtree
+        xit 'replaces the node with the largest node in its left subtree' do
+          
+        end
       end
     end
   end
+
+  # describe '#preorder' do
+  #   context 'when block is given' do
+  #     it 'yields each node to the block' do
+
+  #     end
+  #   end
+  # end
 end

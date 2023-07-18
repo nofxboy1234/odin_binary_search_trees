@@ -119,7 +119,19 @@ class Tree
     insert_recursive(root, value)
   end
 
+  def find(value)
+    find_recursive(root, value)
+  end
+
+  def delete(value)
+
+  end
+
   private
+
+  def find_recursive(root, value)
+    
+  end
 
   def insert_recursive(root, value)
     return Node.new(data: value) if root.nil?
