@@ -136,6 +136,14 @@ class Tree
     balance_status.all?
   end
 
+  def rebalance
+    return unless root
+    return if balanced?
+
+    @array = preorder.uniq.sort
+    build_tree
+  end
+
   private
 
   def height_recursive(node)
