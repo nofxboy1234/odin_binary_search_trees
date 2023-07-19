@@ -9,7 +9,6 @@ require './lib/byebug_syntax_highlighting'
 
 # Tree represents a Binary Search Tree
 class Tree
-  # def initialize(array = NilArray.new)
   def initialize(array: nil)
     @array = array
   end
@@ -229,12 +228,10 @@ class Tree
   def delete_recursive(root, value)
     return nil if root.nil?
 
-    # check if root is a leaf node
     if root.data == value
       if root.leaf?
         # Set the parent's left or right to be nil
         return nil
-      # check if root has 1 child
       elsif root.has_one_child?
         # Set the parent's left or right to be the only child
         return root.left || root.right
@@ -299,11 +296,6 @@ class Tree
     nodes
   end
 end
-
-# tree = Tree.new(array: [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9])
-# tree.pretty_print(tree.root)
-# byebug
-# puts tree.depth(Node.new(data: 6))
 
 # rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable Style/TrivialAccessors
