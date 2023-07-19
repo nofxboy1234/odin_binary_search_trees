@@ -568,6 +568,14 @@ RSpec.describe Tree do
         expect(tree).not_to be_balanced 
       end
     end
+
+    context 'when the tree is empty' do
+      subject(:tree) { described_class.new }
+
+      it 'returns nil' do
+        expect(tree.balanced?).to eq(nil)
+      end
+    end
   end
 
   describe '#rebalance', rebalance: true do
@@ -592,6 +600,14 @@ RSpec.describe Tree do
       after do
         puts "\n"
         tree.pretty_print(tree.root)
+      end
+    end
+
+    context 'when the tree is empty' do
+      subject(:tree) { described_class.new }
+
+      it 'returns nil' do
+        expect(tree.rebalance).to eq(nil)
       end
     end
   end
