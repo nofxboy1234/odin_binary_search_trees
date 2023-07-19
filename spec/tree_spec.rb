@@ -179,12 +179,12 @@ RSpec.describe Tree do
           array = tree.array
           root_node = tree.build_tree_iterative(array)
           expect(root_node.data).to eq(4)
+
           tree.pretty_print(root_node)
         end
 
         it 'sends .new message to Node exactly 7 times' do
           array = tree.array
-          
           expect(Node).to receive(:new).exactly(7).times.and_call_original
           root_node = tree.build_tree_iterative(array)
 
@@ -281,6 +281,9 @@ RSpec.describe Tree do
       
       it 'returns 3 for height of root node' do
         tree.pretty_print(tree.root)
+        # tree.pretty_print(tree.find(100))
+        # tree.pretty_print(Node.new(data: 100))
+
         expect(tree.height(tree.root)).to eq(3)
       end
 
@@ -305,6 +308,9 @@ RSpec.describe Tree do
 
       it 'returns -1 for any node' do
         tree.pretty_print(tree.root)
+        # tree.pretty_print(tree.find(7))
+        # tree.pretty_print(Node.new(data: 100))
+
         expect(tree.height(Node.new(data: 2))).to eq(-1)
       end
     end
