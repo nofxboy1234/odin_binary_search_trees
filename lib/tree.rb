@@ -136,6 +136,10 @@ class Tree
     inorder_recursive(root, &my_block)
   end
 
+  def postorder(&my_block)
+    postorder_recursive(root, &my_block)
+  end
+
   private
 
   def preorder_recursive(root, values = [], &my_block)
@@ -157,7 +161,7 @@ class Tree
     return if root.nil?
 
     inorder_recursive(root.left, values, &my_block)
-    
+
     if block_given?
       my_block.call(root)
     else
@@ -165,6 +169,21 @@ class Tree
     end
 
     inorder_recursive(root.right, values, &my_block)
+
+    values unless block_given?
+  end
+
+  def postorder_recursive(root, values = [], &my_block)
+    return if root.nil?
+
+    postorder_recursive(root.left, values, &my_block)
+    postorder_recursive(root.right, values, &my_block)
+
+    if block_given?
+      my_block.call(root)
+    else
+      values.push(root.data)
+    end
 
     values unless block_given?
   end

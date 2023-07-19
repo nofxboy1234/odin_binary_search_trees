@@ -457,4 +457,39 @@ RSpec.describe Tree do
       end
     end
   end
+
+  describe '#postorder', postorder: true do
+    describe 'accepts a block, traverses the tree in depth-first postorder and yields each node to the provided block' do
+      context 'when level_order_recursive is %w[F D J B E G K A C I]' do
+        subject(:tree) { described_class.new }
+  
+        before do
+          %w[F D J B E G K A C I].each { |value| tree.insert(value) }
+          tree.pretty_print(tree.root)
+        end
+
+        context 'when no block is given' do
+          it 'returns %w[A C B E D I G K J F]' do
+            expect(tree.postorder).to eq(%w[A C B E D I G K J F])
+          end
+        end
+
+        context 'when a block is given' do
+          context 'when block is { |node| "data: #{node.data}" }' do
+            let(:my_proc) { my_proc = Proc.new { |node| p "data: #{node.data}" } }
+  
+            it 'returns nil' do
+              allow(my_proc).to receive(:call)
+              expect(tree.postorder(&my_proc)).to eq(nil)
+            end
+            
+            it 'sends #call message to my_proc exactly 10 times' do
+              expect(my_proc).to receive(:call).exactly(10).times.and_call_original
+              tree.postorder(&my_proc)
+            end
+          end
+        end
+      end
+    end
+  end
 end
