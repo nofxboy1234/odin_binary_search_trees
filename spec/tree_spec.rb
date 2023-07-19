@@ -391,7 +391,7 @@ RSpec.describe Tree do
   end
 
   describe '#preorder', preorder: true do
-    describe 'accepts a block, traverses the tree in breadth-first level order and yields each node to the provided block' do
+    describe 'accepts a block, traverses the tree in depth-first preorder and yields each node to the provided block' do
       context 'when level_order_recursive is %w[F D J B E G K A C I]' do
         subject(:tree) { described_class.new }
   
@@ -401,9 +401,9 @@ RSpec.describe Tree do
         end
 
         context 'when no block is given' do
-            it 'returns %w[F D B A C E J G I K]' do
-              expect(tree.preorder).to eq(%w[F D B A C E J G I K])
-            end
+          it 'returns %w[F D B A C E J G I K]' do
+            expect(tree.preorder).to eq(%w[F D B A C E J G I K])
+          end
         end
 
         context 'when a block is given' do
