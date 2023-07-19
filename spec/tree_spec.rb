@@ -293,8 +293,8 @@ RSpec.describe Tree do
 
       it 'returns -1 for any node' do
         tree.pretty_print(tree.root)
-        # tree.pretty_print(tree.find(7))
-        # tree.pretty_print(Node.new(data: 100))
+        tree.pretty_print(tree.find(7))
+        tree.pretty_print(Node.new(data: 100))
 
         expect(tree.height(Node.new(data: 2))).to eq(-1)
       end
