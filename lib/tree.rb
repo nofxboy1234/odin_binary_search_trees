@@ -86,14 +86,6 @@ class Tree
     height_recursive(found_node)
   end
 
-  def height_recursive(node)
-    return -1 if node.nil?
-
-    left_height = height_recursive(node.left)
-    right_height = height_recursive(node.right)
-    [left_height, right_height].max + 1
-  end
-
   def depth(node)
     depth_recursive(root, node)
   end
@@ -123,6 +115,14 @@ class Tree
   end
 
   private
+
+  def height_recursive(node)
+    return -1 if node.nil?
+
+    left_height = height_recursive(node.left)
+    right_height = height_recursive(node.right)
+    [left_height, right_height].max + 1
+  end
 
   def build_tree_recursive(array, start_index, end_index)
     return if start_index > end_index
