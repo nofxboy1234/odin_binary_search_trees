@@ -4,6 +4,8 @@
 # rubocop:disable Style/TrivialAccessors
 
 require './lib/node'
+require 'pry-byebug'
+require './lib/byebug_syntax_highlighting'
 
 # Tree represents a Binary Search Tree
 class Tree
@@ -221,5 +223,11 @@ class Tree
   end
 end
 
+# tree = Tree.new
+# %w[F D J B E G K A C I].each { |value| tree.insert(value) }
+# tree.pretty_print(tree.root)
+# tree.preorder
+
 # rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable Style/TrivialAccessors
+

@@ -1,6 +1,4 @@
 require './lib/tree'
-require 'pry-byebug'
-require './lib/byebug_syntax_highlighting'
 
 # Build Balanced BST: Stack -> *Recursion, Queue -> *Iteration,
 # Breadth-First search: Queue -> *Iteration, Stack -> *Recursion
