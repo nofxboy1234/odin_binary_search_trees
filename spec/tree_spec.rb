@@ -93,7 +93,7 @@ RSpec.describe Tree do
     end
   end
 
-  describe '#build_tree_recursive', build_tree_recursive: true do
+  describe '#build_tree', build_tree: true do
     # 1. initialize start_index = 0, end_index = length of array - 1
     # 2. mid_index = (start_index + end_index) / 2
     # 3. create a tree node with mid_index as root (let's call it A)
@@ -102,93 +102,77 @@ RSpec.describe Tree do
     # 5. calculate mid_index of right subarray and make it root of right subtree of A
 
     describe 'takes an array of data and turns it into a balanced BST' do
-      context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
-        # https://youtu.be/VCTP81Ij-EM?t=224
-        it 'returns the root node (5) of the built balanced BST' do
-          array = tree.array
-          start_index = 0
-          end_index = array.length - 1
-          root_node = tree.build_tree_recursive(array, start_index, end_index)
-          expect(root_node.data).to eq(5)
-
-          tree.pretty_print(root_node)
+      context 'when buildtree algorithm = "recursive"' do
+        context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
+          # https://youtu.be/VCTP81Ij-EM?t=224
+          it 'returns the root node (5) of the built balanced BST' do
+            root_node = tree.build_tree
+            expect(root_node.data).to eq(5)
+  
+            tree.pretty_print(root_node)
+          end
+  
+          it 'sends .new message to Node exactly 9 times' do
+            expect(Node).to receive(:new).exactly(9).times.and_call_original
+            root_node = tree.build_tree
+            
+            tree.pretty_print(root_node)
+          end
         end
-
-        it 'sends .new message to Node exactly 9 times' do
-          array = tree.array
-          start_index = 0
-          end_index = array.length - 1
-          
-          expect(Node).to receive(:new).exactly(9).times.and_call_original
-          root_node = tree.build_tree_recursive(array, start_index, end_index)
-          
-          tree.pretty_print(root_node)
-        end
-      end
-
-      context 'when array is [1, 2, 3, 4, 5, 6, 7]' do
-        subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
-
-        it 'returns the root node (4) of the built balanced BST' do
-          array = tree.array
-          start_index = 0
-          end_index = array.length - 1
-          root_node = tree.build_tree_recursive(array, start_index, end_index)
-          expect(root_node.data).to eq(4)
-          tree.pretty_print(root_node)
-        end
-
-        it 'sends .new message to Node exactly 7 times' do
-          array = tree.array
-          start_index = 0
-          end_index = array.length - 1
-          
-          expect(Node).to receive(:new).exactly(7).times.and_call_original
-          root_node = tree.build_tree_recursive(array, start_index, end_index)
-
-          tree.pretty_print(root_node)
-        end
-      end
-    end
-  end
-
-  describe '#build_tree_iterative', build_tree_iterative: true do
-    describe 'takes an array of data and turns it into a balance BST' do
-      context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
-        it 'returns the root node (5) of the built balanced BST' do
-          array = tree.array
-          root_node = tree.build_tree_iterative(array)
-          expect(root_node.data).to eq(5)
-          tree.pretty_print(root_node)
-        end
-
-        it 'sends .new message to Node exactly 9 times' do
-          array = tree.array
-          
-          expect(Node).to receive(:new).exactly(9).times.and_call_original
-          root_node = tree.build_tree_iterative(array)
-
-          tree.pretty_print(root_node)
+  
+        context 'when array is [1, 2, 3, 4, 5, 6, 7]' do
+          subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
+  
+          it 'returns the root node (4) of the built balanced BST' do
+            root_node = tree.build_tree
+            expect(root_node.data).to eq(4)
+            
+            tree.pretty_print(root_node)
+          end
+  
+          it 'sends .new message to Node exactly 7 times' do
+            expect(Node).to receive(:new).exactly(7).times.and_call_original
+            root_node = tree.build_tree
+  
+            tree.pretty_print(root_node)
+          end
         end
       end
 
-      context 'when array is [1, 2, 3, 4, 5, 6, 7]' do
-        subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
-
-        it 'returns the root node (4) of the built balanced BST' do
-          array = tree.array
-          root_node = tree.build_tree_iterative(array)
-          expect(root_node.data).to eq(4)
-
-          tree.pretty_print(root_node)
+      context 'when buildtree algorithm = "iterative"' do
+        context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
+          # https://youtu.be/VCTP81Ij-EM?t=224
+          it 'returns the root node (5) of the built balanced BST' do
+            root_node = tree.build_tree('iterative')
+            expect(root_node.data).to eq(5)
+  
+            tree.pretty_print(root_node)
+          end
+  
+          it 'sends .new message to Node exactly 9 times' do
+            expect(Node).to receive(:new).exactly(9).times.and_call_original
+            root_node = tree.build_tree('iterative')
+            
+            tree.pretty_print(root_node)
+          end
         end
-
-        it 'sends .new message to Node exactly 7 times' do
-          array = tree.array
-          expect(Node).to receive(:new).exactly(7).times.and_call_original
-          root_node = tree.build_tree_iterative(array)
-
-          tree.pretty_print(root_node)
+  
+        context 'when array is [1, 2, 3, 4, 5, 6, 7]' do
+          subject(:tree) { described_class.new(array: [1, 2, 3, 4, 5, 6, 7]) }
+  
+          it 'returns the root node (4) of the built balanced BST' do
+            root_node = tree.build_tree('iterative')
+            expect(root_node.data).to eq(4)
+            
+            tree.pretty_print(root_node)
+          end
+  
+          it 'sends .new message to Node exactly 7 times' do
+            expect(Node).to receive(:new).exactly(7).times.and_call_original
+            root_node = tree.build_tree('iterative')
+  
+            tree.pretty_print(root_node)
+          end
         end
       end
     end

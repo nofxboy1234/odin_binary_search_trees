@@ -15,9 +15,7 @@ class Tree
   end
 
   def root
-    # return if @array.nil?
-
-    @root ||= build_tree_recursive(array, 0, array.length - 1)
+    @root || build_tree
   end
 
   def array
@@ -26,49 +24,17 @@ class Tree
     @array.uniq.sort
   end
 
-  def build_tree_recursive(array, start_index, end_index)
-    return if start_index > end_index
-
-    mid_index = (start_index + end_index) / 2
-
-    left = build_tree_recursive(array, start_index, mid_index - 1)
-    right = build_tree_recursive(array, mid_index + 1, end_index)
-    Node.new(data: array[mid_index], left: left, right: right)
-  end
-
-  def build_tree_iterative(array)
-    return if array.empty?
-
-    mid_index = array.length / 2
-    root = Node.new(data: array[mid_index])
-
-    queue = [[root, [0, mid_index - 1]],
-             [root, [mid_index + 1, array.length - 1]]]
-
-    while queue.length.positive?
-      parent, start_index, end_index = queue.shift.flatten
-
-      next if (start_index > end_index) && parent
-
-      mid_index = (start_index + end_index) / 2
-      child = Node.new(data: array[mid_index])
-
-      if child < parent
-        parent.left = child
-      else
-        parent.right = child
-      end
-
-      queue.push([child, [start_index, mid_index - 1]])
-      queue.push([child, [mid_index + 1, end_index]])
+  def build_tree(algorithm = 'recursive')
+    if algorithm == 'recursive'
+      @root = build_tree_recursive(array, 0, array.length - 1)
+    elsif algorithm == 'iterative'
+      @root = build_tree_iterative(array)
     end
-
-    root
   end
 
   def pretty_print(node, prefix = '', is_left = true)
     return if node.nil?
-    # return unless find(node.data)
+    return unless find(node.data)
 
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
@@ -155,6 +121,46 @@ class Tree
   end
 
   private
+
+  def build_tree_recursive(array, start_index, end_index)
+    return if start_index > end_index
+
+    mid_index = (start_index + end_index) / 2
+
+    left = build_tree_recursive(array, start_index, mid_index - 1)
+    right = build_tree_recursive(array, mid_index + 1, end_index)
+    Node.new(data: array[mid_index], left: left, right: right)
+  end
+
+  def build_tree_iterative(array)
+    return if array.empty?
+
+    mid_index = array.length / 2
+    root = Node.new(data: array[mid_index])
+
+    queue = [[root, [0, mid_index - 1]],
+             [root, [mid_index + 1, array.length - 1]]]
+
+    while queue.length.positive?
+      parent, start_index, end_index = queue.shift.flatten
+
+      next if (start_index > end_index) && parent
+
+      mid_index = (start_index + end_index) / 2
+      child = Node.new(data: array[mid_index])
+
+      if child < parent
+        parent.left = child
+      else
+        parent.right = child
+      end
+
+      queue.push([child, [start_index, mid_index - 1]])
+      queue.push([child, [mid_index + 1, end_index]])
+    end
+
+    root
+  end
 
   def depth_recursive(root, node)
     return -1 unless find(node.data)
