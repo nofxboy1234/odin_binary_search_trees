@@ -132,6 +132,10 @@ class Tree
     preorder_recursive(root, &my_block)
   end
 
+  def inorder(&my_block)
+    inorder_recursive(root, &my_block)
+  end
+
   private
 
   def preorder_recursive(root, values = [], &my_block)
@@ -145,6 +149,22 @@ class Tree
 
     preorder_recursive(root.left, values, &my_block)
     preorder_recursive(root.right, values, &my_block)
+
+    values unless block_given?
+  end
+
+  def inorder_recursive(root, values = [], &my_block)
+    return if root.nil?
+
+    inorder_recursive(root.left, values, &my_block)
+    
+    if block_given?
+      my_block.call(root)
+    else
+      values.push(root.data)
+    end
+
+    inorder_recursive(root.right, values, &my_block)
 
     values unless block_given?
   end
