@@ -541,4 +541,35 @@ RSpec.describe Tree do
       end
     end
   end
+
+  describe '#balanced?', balanced: true do
+    before do
+    end
+    
+    context 'when tree is balanced' do
+      it 'returns true' do
+        tree.pretty_print(tree.root)
+        expect(tree).to be_balanced 
+      end
+
+      it 'returns true' do
+        tree.insert(10)
+        tree.insert(7.5)
+        tree.insert(5.5)
+        tree.pretty_print(tree.root)
+        expect(tree).to be_balanced 
+      end
+    end
+    
+    context 'when tree is unbalanced' do
+      before do
+        tree.insert(10)
+        tree.pretty_print(tree.root)
+      end
+  
+      it 'returns false' do
+        expect(tree).not_to be_balanced 
+      end
+    end
+  end
 end

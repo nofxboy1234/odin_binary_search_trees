@@ -113,6 +113,29 @@ class Tree
     postorder_recursive(root, &my_block)
   end
 
+  def balanced?
+    return unless root
+
+    balance_status = []
+    preorder do |node|
+      height_left = if node.left
+                      height(node.left)
+                    else
+                      0
+                    end
+
+      height_right = if node.right
+                       height(node.right)
+                     else
+                       0
+                     end
+
+      is_balanced = (height_left - height_right).abs <= 1
+      balance_status << is_balanced
+    end
+    balance_status.all?
+  end
+
   private
 
   def height_recursive(node)
