@@ -271,12 +271,31 @@ RSpec.describe Tree do
     end
   end
 
-  describe '#height_recursive', height_recursive: true do
+  describe '#height', height: true do
     context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
-      it 'returns 3 for height of root_node' do
-        root_node = tree.root
-        tree.pretty_print(root_node)
-        expect(tree.height_recursive(root_node)).to eq(3)
+      it 'returns -1 for height of non-existent node(100)' do
+        tree.pretty_print(tree.root)
+        expect(tree.height(Node.new(data: 100))).to eq(-1)
+      end
+      
+      it 'returns 3 for height of root node' do
+        tree.pretty_print(tree.root)
+        expect(tree.height(tree.root)).to eq(3)
+      end
+
+      it 'returns 0 for height of node(6)' do
+        tree.pretty_print(tree.root)
+        expect(tree.height(Node.new(data: 6))).to eq(0)
+      end
+
+      it 'returns 0 for height of node(9)' do
+        tree.pretty_print(tree.root)
+        expect(tree.height(Node.new(data: 9))).to eq(0)
+      end
+
+      it 'returns 2 for height of node(2)' do
+        tree.pretty_print(tree.root)
+        expect(tree.height(Node.new(data: 2))).to eq(2)
       end
     end
   end
@@ -513,6 +532,11 @@ RSpec.describe Tree do
       it 'returns 3 for depth of node(9)' do
         tree.pretty_print(tree.root)
         expect(tree.depth(Node.new(data: 9))).to eq(3)
+      end
+
+      it 'returns 1 for depth of node(2)' do
+        tree.pretty_print(tree.root)
+        expect(tree.depth(Node.new(data: 2))).to eq(1)
       end
     end
   end

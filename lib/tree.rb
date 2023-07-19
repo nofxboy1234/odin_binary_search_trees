@@ -108,6 +108,13 @@ class Tree
     end
   end
 
+  def height(node)
+    found_node = find(node.data)
+    return -1 unless found_node
+
+    height_recursive(found_node)
+  end
+
   def height_recursive(node)
     return -1 if node.nil?
 
