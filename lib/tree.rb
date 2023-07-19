@@ -147,6 +147,8 @@ class Tree
   private
 
   def depth_recursive(root, node)
+    return -1 unless find(node.data)
+
     if node == root
       return 0
     end
