@@ -114,10 +114,12 @@ class Tree
   end
 
   def balanced?
-    return unless root
+    # byebug
+    return true unless root
 
     balance_status = []
     preorder do |node|
+      # byebug
       height_left = if node.left
                       height(node.left)
                     else

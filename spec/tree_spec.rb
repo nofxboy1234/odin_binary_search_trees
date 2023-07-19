@@ -572,8 +572,8 @@ RSpec.describe Tree do
     context 'when the tree is empty' do
       subject(:tree) { described_class.new }
 
-      it 'returns nil' do
-        expect(tree.balanced?).to eq(nil)
+      it 'returns true' do
+        expect(tree.balanced?).to eq(true)
       end
     end
   end
