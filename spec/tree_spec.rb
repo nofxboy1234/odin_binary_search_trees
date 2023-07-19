@@ -110,6 +110,7 @@ RSpec.describe Tree do
           end_index = array.length - 1
           root_node = tree.build_tree_recursive(array, start_index, end_index)
           expect(root_node.data).to eq(5)
+
           tree.pretty_print(root_node)
         end
 
@@ -120,7 +121,7 @@ RSpec.describe Tree do
           
           expect(Node).to receive(:new).exactly(9).times.and_call_original
           root_node = tree.build_tree_recursive(array, start_index, end_index)
-
+          
           tree.pretty_print(root_node)
         end
       end
@@ -296,6 +297,15 @@ RSpec.describe Tree do
       it 'returns 2 for height of node(2)' do
         tree.pretty_print(tree.root)
         expect(tree.height(Node.new(data: 2))).to eq(2)
+      end
+    end
+
+    context 'when tree is empty' do
+      subject(:tree) { described_class.new }
+
+      it 'returns -1 for any node' do
+        tree.pretty_print(tree.root)
+        expect(tree.height(Node.new(data: 2))).to eq(-1)
       end
     end
   end
