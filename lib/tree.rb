@@ -116,6 +116,10 @@ class Tree
     [left_height, right_height].max + 1
   end
 
+  def depth(node)
+    depth_recursive(root, node)
+  end
+
   def insert(value)
     @root = insert_recursive(root, value)
   end
@@ -141,6 +145,20 @@ class Tree
   end
 
   private
+
+  def depth_recursive(root, node)
+    if node == root
+      return 0
+    end
+
+    if node < root
+      height = depth_recursive(root.left, node)
+    elsif node > root
+      height = depth_recursive(root.right, node)
+    end
+
+    height + 1
+  end
 
   def preorder_recursive(root, values = [], &my_block)
     return if root.nil?
@@ -262,10 +280,10 @@ class Tree
   end
 end
 
-# tree = Tree.new
-# %w[F D J B E G K A C I].each { |value| tree.insert(value) }
+# tree = Tree.new(array: [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9])
 # tree.pretty_print(tree.root)
-# tree.preorder
+# byebug
+# puts tree.depth(Node.new(data: 6))
 
 # rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable Style/TrivialAccessors

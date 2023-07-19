@@ -492,4 +492,18 @@ RSpec.describe Tree do
       end
     end
   end
+
+  describe '#depth', depth: true do
+    context 'when array is [9, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9]' do
+      it 'returns 2 for depth of node(6)' do
+        tree.pretty_print(tree.root)
+        expect(tree.depth(Node.new(data: 6))).to eq(2)
+      end
+
+      it 'returns 0 for depth of root node' do
+        tree.pretty_print(tree.root)
+        expect(tree.depth(tree.root)).to eq(0)
+      end
+    end
+  end
 end
