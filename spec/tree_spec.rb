@@ -265,8 +265,9 @@ RSpec.describe Tree do
       
       it 'returns 3 for height of root node' do
         tree.pretty_print(tree.root)
-        # tree.pretty_print(tree.find(100))
-        # tree.pretty_print(Node.new(data: 100))
+        tree.pretty_print(tree.find(100))
+        tree.pretty_print(Node.new(data: 100))
+        tree.pretty_print(Node.new(data: 2))
 
         expect(tree.height(tree.root)).to eq(3)
       end

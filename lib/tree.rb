@@ -34,11 +34,13 @@ class Tree
 
   def pretty_print(node, prefix = '', is_left = true)
     return if node.nil?
-    return unless find(node.data)
 
-    pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
-    puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
-    pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
+    found_node = find(node.data)
+    return unless found_node
+
+    pretty_print(found_node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if found_node.right
+    puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{found_node.data}"
+    pretty_print(found_node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if found_node.left
   end
 
   def level_order_iterative(&my_block)
